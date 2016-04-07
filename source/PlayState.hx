@@ -62,10 +62,16 @@ class PlayState extends FlxState
 		
 		
 		this.brickSprite = new FlxSprite(250, 150);
-		this.brickSprite.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, true);
+		this.brickSprite.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, false);
 		this.add(this.brickSprite);
+		
+		//this.brickSprite.setColorTransform(0.5, 1.0, 1.0, 1.0, 0, 0, 0, 0);
+		
 		//this.brickSprite.color = 0xFF0000;
 		
+		var testColorTransform:ColorTransform = new ColorTransform(0.5, 1.0, 1.0, 1.0, 0, 0, 0, 0);
+		
+		this.brickSprite.pixels = this.copyColorTransform(brickSprite, testColorTransform);
 		
 		
 		this.lightGlow = new FlxSprite(300, 200);
@@ -73,7 +79,7 @@ class PlayState extends FlxState
 		this.add(this.lightGlow);
 		
 		this.test = new FlxSprite(100, 100);
-		this.test.pixels = FlxAssets.getBitmapData("assets/images/greenbox.png");
+		this.test.pixels = FlxAssets.getBitmapData("assets/images/ZiegelUnregV1.png");
 		this.add(this.test);
 		
 		
@@ -85,6 +91,14 @@ class PlayState extends FlxState
 		super.create();
 	}
 	
+	
+	
+	public function copyColorTransform(LeSprite:FlxSprite, LeColorTransform:ColorTransform):BitmapData
+	{
+		var data:BitmapData = LeSprite.pixels;
+		data.colorTransform(new Rectangle(0, 0, data.width, data.height), LeColorTransform);
+		return data;
+	}
 	
 	
 	/**
