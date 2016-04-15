@@ -3,6 +3,8 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.group.FlxGroup;
+import flixel.math.FlxRect;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
@@ -27,6 +29,10 @@ import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.system.FlxAssets;
 import flixel.tweens.FlxTween;
+import flixel.tile.FlxTilemap;
+
+
+
 
 /**
  * A FlxState which can be used for the actual gameplay.
@@ -43,10 +49,25 @@ class PlayState extends FlxState
 	*/
 	private var dollyDestination:Int;
 	
-	public var brickSprite:FlxSprite;
+	public var brickTilemap:FlxTilemap;
+	public var brickTilemap2:FlxTilemap;
+	public var brickTilemapText:FlxText;
 	public var lightGlow:FlxSprite;
 	
+	
+	public var brickSprite:FlxSprite;
+	public var brickSprite2:FlxSprite;
+	public var brickSpriteText:FlxText;
+	public var lightGlow2:FlxSprite;
+	
+	
+	public var girlSprite:FlxSprite;
+	public var girlSpriteText:FlxText;
+	public var girlSprite2:FlxSprite;
+	public var lightGlow3:FlxSprite;
+	
 	public var test:FlxSprite;
+	
 	
 	
 	
@@ -60,61 +81,263 @@ class PlayState extends FlxState
 		FlxG.worldBounds.set( 0, 0, 640, 480); 
 		FlxG.camera.setScrollBoundsRect(0, 0, 640, 480, true);
 		
-		
-		this.brickSprite = new FlxSprite(250, 150);
-		this.brickSprite.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, false);
-		this.add(this.brickSprite);
-		
-		//this.brickSprite.setColorTransform(0.5, 1.0, 1.0, 1.0, 0, 0, 0, 0);
-		
-		//this.brickSprite.color = 0xFF0000;
-		
-		var testColorTransform:ColorTransform = new ColorTransform(0.5, 1.0, 1.0, 1.0, 0, 0, 0, 0);
-		
-		this.brickSprite.pixels = this.copyColorTransform(brickSprite, testColorTransform);
+		//////////////////////////////////////////////////////
+		////	FlxTilemap Lighting
+		///////////////////////////////////////////////////////
 		
 		
-		this.lightGlow = new FlxSprite(300, 200);
+		this.brickTilemap = new FlxTilemap();
+		this.brickTilemap.loadMapFrom2DArray([[0, 1], [2, 3]], "assets/images/ZiegelUnregV1.png", 64, 64, 0, 0, 0);
+		this.add(brickTilemap);
+		
+		this.brickTilemap2 = new FlxTilemap();
+		this.brickTilemap2.loadMapFrom2DArray([[0, 1], [2, 3]], "assets/images/ZiegelUnregV1.png", 64, 64, 0, 0, 0);
+		this.brickTilemap2.y = 250;
+		this.add(brickTilemap2);
+		
+		this.brickTilemapText = new FlxText(20, 200, 0, "FlxTilemap");
+		this.add(brickTilemapText);
+		
+		
+		this.brickTilemap.color = 0x00FFFF;
+		
+		this.lightGlow = new FlxSprite(24, 24);
 		this.lightGlow.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
-		this.add(this.lightGlow);
-		
-		this.test = new FlxSprite(100, 100);
-		this.test.pixels = FlxAssets.getBitmapData("assets/images/ZiegelUnregV1.png");
-		this.add(this.test);
+		//this.lightGlow.loadGraphic("assets/images/greenbox.png", false, 128, 128, true);
+		//this.add(this.lightGlow);
 		
 		
-		
-		this.brickSprite = alphaMask(brickSprite, test.pixels, lightGlow.pixels);
+		this.lightingTileHandler(this.lightGlow, this.brickTilemap);
+	
 		
 
+		
+		
+		
+		
+		//////////////////////////////////////////////////////
+		////	Static FlxSprite Lighting
+		///////////////////////////////////////////////////////
+		
+		
+		
+		this.brickSprite = new FlxSprite(200, 0);
+		this.brickSprite.pixels = FlxAssets.getBitmapData("assets/images/ZiegelUnregV1.png");
+		//this.brickSprite.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, true);
+		this.add(this.brickSprite);
+		
+		
+		
+		var testColorTransform:ColorTransform = new ColorTransform(0.2, 0.2, 0.2, 1.0, 0, 0, 0, 0);
+		this.brickSprite.framePixels.colorTransform(this.brickSprite.getHitbox().copyToFlash(), testColorTransform);
+		this.brickSprite.pixels = this.bitmapColorTransform(brickSprite.pixels, testColorTransform);
+		
+		
+		//For some reason, when coloring the sprite with one of those two methods, the lighting will not work
+		//Reason is propably that the color transformation is applied after the lighting, during the draw call.
+		//this.brickSprite.setColorTransform(0.2, 0.2, 0.2, 1.0, 0, 0, 0, 0);
+		//this.brickSprite.color = 0xFF333333;
+
+		
+		
+		this.brickSpriteText = new FlxText(220, 200, 0, "FlxSprite");
+		this.add(brickSpriteText);
+		
+		this.brickSprite2 = new FlxSprite(200, 250);
+		this.brickSprite2.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, true);
+		this.add(this.brickSprite2);
+		
+		this.lightGlow2 = new FlxSprite(190, 24);
+		this.lightGlow2.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
+		//this.add(this.lightGlow2);
+		
+
+		
+		this.lightingHandler(this.lightGlow2, this.brickSprite);
+		
+		
+		
+		//////////////////////////////////////////////////////
+		////	Animated FlxSprite Lighting
+		///////////////////////////////////////////////////////
+		
+		
+		
+		
+		this.lightGlow3 = new FlxSprite(400, 24);
+		this.lightGlow3.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
+		//this.lightGlow.loadGraphic("assets/images/greenbox.png", false, 128, 128, true);
+		this.add(this.lightGlow3);
+		
+		//this.test = new FlxSprite(100, 100);
+		//this.test.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, true);
+		//this.test.pixels = FlxAssets.getBitmapData("assets/images/ZiegelUnregV1.png");
+		//this.add(this.test);
+		
+		this.girlSprite = new FlxSprite(400, 20);
+		
+		
+		girlSprite.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, false);
+		//this.girl.pixels = this.bitmapColorTransform(girl.pixels, testColorTransform);
+		girlSprite.animation.add("running", [0, 1, 2, 3, 4, 5, 6, 7], 2);
+		this.add(girlSprite);
+		girlSprite.animation.play("running");
+		this.girlSprite.color = 0x00FFFF;
+		this.girlSprite.drawFrame(true);
+		
+		this.girlSpriteText = new FlxText(420, 200, 0, "Animated FlxSprite");
+		this.add(girlSpriteText);
+		
+		//this.girl.framePixels.colorTransform(this.girl.getHitbox().copyToFlash(), testColorTransform);
+		//trace (this.girl.framePixels.colorTransform);
+		
+		//this.girl.framePixels = this.bitmapColorTransform(girl.framePixels, testColorTransform);
+
+		
+		this.girlSprite2 = new FlxSprite(400, 250);
+		girlSprite2.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, false);
+		girlSprite2.animation.add("running", [0, 1, 2, 3, 4, 5, 6, 7], 16);
+		this.add(girlSprite2);
+		girlSprite2.animation.play("running");
+		
+		this.lightingAnimationHandler(this.lightGlow3, this.girlSprite, this.girlSprite.framePixels);
+		
+		
+		
+		
 		
 		super.create();
 	}
 	
-	
-	
-	public function copyColorTransform(LeSprite:FlxSprite, LeColorTransform:ColorTransform):BitmapData
+	/**
+	 * Checks if light is hitting a FlxTilemap; and if yes, handles the lighting of it.
+	 * For now, it basically creates a new FlxSprite with the graphic of the intersection and placed that in front of the Tilemap.
+	 * @param	Light	A FlxSprite of a light cone. Should be white/colored on the inside and transparent on the outside.
+	 * @param	Target	The FlxTilemap that should be illuminated. Illumination works by negating a prior colorTransformation of the target.
+	 * 
+	 * The original, uncolored pixels of the target object are copied at the position where the light cone hits it. 
+	 * Here, those pixels are copied into the bitmapdata of a newly created FlxSprite.
+	 */
+	public function lightingTileHandler(Light:FlxSprite, Target:FlxTilemap):Void
 	{
-		var data:BitmapData = LeSprite.pixels;
-		data.colorTransform(new Rectangle(0, 0, data.width, data.height), LeColorTransform);
-		return data;
+		//Creates the intersection Rectangle between the Light and the Target (if existent) and transforms it from FlxRect to flash.geom.Rectangle
+		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
+		
+		if ((intersectionRect != null) && (intersectionRect.width > 0) && (intersectionRect.height > 0))
+		{
+			trace("intersect not null");
+			
+			//The area on the source bitmap from which the unmodified pixels are to be copied from. In local coordinates, as it operates on the bitmap.
+			var sourceRectLocal = new Rectangle(intersectionRect.x - Target.x, intersectionRect.y - Target.y, intersectionRect.width, intersectionRect.height);
+			
+			//The target point where that rectangle is to be located on the target bitmap.
+			var targetPointLocal = new Point(intersectionRect.x - Target.x, intersectionRect.y - Target.y);
+			
+			//The mask to apply. This is the bitmap of that part of the light cone graphic that intersects with the target.
+			var maskRectBitmap = new BitmapData(Std.int(intersectionRect.width), Std.int(intersectionRect.height));
+			
+			
+			trace("sourceRectLocal top left: " + sourceRectLocal.x + "/" + sourceRectLocal.y);
+			trace("sourceRectLocal bottom right: " + sourceRectLocal.bottomRight.x + "/" + sourceRectLocal.bottomRight.y);
+			trace("target point: " + targetPointLocal.x + "/" + targetPointLocal.y);
+			
+			//this.brickSprite.pixels.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), targetPointLocal);
+			
+			maskRectBitmap.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), new Point(0, 0));
+			
+			//The new sprite with the graphic of the lightened tielmap, placed axactly over the tilemap at the corresponding position
+			var overlaySprite:FlxSprite = new FlxSprite(intersectionRect.x, intersectionRect.y);
+			overlaySprite.makeGraphic(Std.int(intersectionRect.width), Std.int(intersectionRect.height),0x00000000);
+			//overlaySprite.pixels = maskRectBitmap;
+			
+			//Actually, here I am cheating: I am loading the original assets of the tilemap. But this only works because they are already in the right order;
+			//Something which normally cannot be expected for a Tilemap.
+			//To make this work, I would need access to the Bitmapdata of the tilemap!
+			overlaySprite = lightMask(overlaySprite, "assets/images/ZiegelUnregV1.png", maskRectBitmap, sourceRectLocal, new Point(0, 0));
+			this.add(overlaySprite);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * Checks if light is hitting a FlxObject; and if yes, handles the lighting of this object
+	 * @param	Light	A FlxSprite of a light cone. Should be white/colored on the inside and transparent on the outside.
+	 * @param	Target	The FlxSprite that should be illuminated. Illumination works by negating a prior colorTransformation of the target.
+	 * 
+	 * The original, uncolored pixels of the target object are copied at the position where the light cone hits it.
+	 */
+	public function lightingHandler(Light:FlxSprite, Target:FlxSprite):Void
+	{
+		//Creates the intersection Rectangle between the Light and the Target (if existent) and transforms it from FlxRect to flash.geom.Rectangle
+		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
+		
+		if ((intersectionRect != null) && (intersectionRect.width > 0) && (intersectionRect.height > 0))
+		{
+			trace("intersect not null");
+			
+			var sourceRectLocal = new Rectangle(intersectionRect.x - Target.x, intersectionRect.y - Target.y, intersectionRect.width, intersectionRect.height);
+			var targetPointLocal = new Point(intersectionRect.x - Target.x, intersectionRect.y - Target.y);
+			
+			var maskRectBitmap = new BitmapData(Std.int(intersectionRect.width), Std.int(intersectionRect.height));
+			maskRectBitmap.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), new Point());
+			
+			//I have manually inserted the link to the asset file here.
+			//I could operate on a childclass of FlxSprite which has this link as a static class attribute
+			//But ir would be more elegant if I could somehow access the original, unmodified bitmapdata, which must be stored somewhere - just haven't found it yet.
+			Target = lightMask(Target, "assets/images/ZiegelUnregV1.png", maskRectBitmap, sourceRectLocal, targetPointLocal);
+		}
+	}
+	
+	
+	
+	/**
+	 * Checks if light is hitting a FlxObject; and if yes, handles the lighting of this object
+	 * @param	Light	A FlxSprite of a light cone. Should be white/colored on the inside and transparent on the outside.
+	 * @param	Target	The animated FlxSprite that should be illuminated. Illumination works by negating a prior colorTransformation of the target.
+	 * 
+	 * The original, uncolored pixels of the target object are copied at the position where the light cone hits it.
+	 */
+	public function lightingAnimationHandler(Light:FlxSprite, Target:FlxSprite, TargetBitmap:BitmapData):Void
+	{
+		//Creates the intersection Rectangle between the Light and the Target (if existent) and transforms it from FlxRect to flash.geom.Rectangle
+		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
+		
+		trace ("Target width: " + Target.getHitbox().width);
+		
+		
+		if ((intersectionRect != null) && (intersectionRect.width > 0) && (intersectionRect.height > 0))
+		{
+			trace("intersect not null");
+			
+			var sourceRectLocal = new Rectangle(intersectionRect.x - Target.x, intersectionRect.y - Target.y, intersectionRect.width, intersectionRect.height);
+			var targetPointLocal = new Point(intersectionRect.x - Target.x, intersectionRect.y - Target.y);
+			
+			var maskRectBitmap = new BitmapData(Std.int(intersectionRect.width), Std.int(intersectionRect.height));
+			maskRectBitmap.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), new Point());
+			
+			Target.framePixels = animationLightMask(Target.framePixels, TargetBitmap, maskRectBitmap, sourceRectLocal, targetPointLocal);
+		}
 	}
 	
 	
 	/**
-	 * Takes two source images (typically from Embedded bitmaps) and puts the resulting image into the output FlxSprite.
-	 * Note: It assumes the source and mask are the same size. Different sizes may result in undesired results.
-	 * It works by copying the source image (your picture) into the output sprite. Then it removes all areas of it that do not
-	 * have an alpha color value in the mask image. So if you draw a big black circle in your mask with a transparent edge, you'll
-	 * get a circular image to appear.
-	 * May lead to unexecpted results if `source` does not have an alpha channel.
+	 * A modified version of FlxSpriteUtil.alphaMask.
+	 * Used to negate a colorTransformation on a Sprite or Tilemap when hit by a light source.
 	 * 
-	 * @param	output		The FlxSprite you wish the resulting image to be placed in (will adjust width/height of image)
-	 * @param	source		The source image. Typically the one with the image / picture / texture in it.
-	 * @param	mask		The mask to apply. Remember the non-alpha zero areas are the parts that will display.
+	 * @param	output		The FlxSprite you wish the resulting image to be placed in (the darkened sprite you want the light cone to shine on)
+	 * @param	source		The source image. The uncolored, unmodified graphic of the output, before it was tinted.
+	 * @param	mask		The mask to apply. This is the bitmap of that part of the light cone graphic that intersects with the target.
+	 * @param	rectangle	The area on the source bitmap from which the unmodified pixels are to be copied from. In local coordinates, as it operates on the bitmap.
+	 * @param	targetPoint	The target point where that rectangle is to be located on the target bitmap.
 	 * @return 	The FlxSprite for chaining
 	 */
-	public static function alphaMask(output:FlxSprite, source:Dynamic, mask:Dynamic):FlxSprite
+	public static function animationLightMask(target:BitmapData, source:Dynamic, mask:Dynamic, rectangle:Rectangle, targetPoint:Point):BitmapData
 	{
 		var data:BitmapData = null;
 		if (Std.is(source, String))
@@ -154,40 +377,142 @@ class PlayState extends FlxState
 			return null;
 		}
 		
-		//data.copyChannel(maskData, new Rectangle(0, 0, data.width, data.height), new Point(), BitmapDataChannel.ALPHA, BitmapDataChannel.ALPHA);
-		output.pixels.copyPixels(data, new Rectangle(0, 0, 64, 64), new Point(10, 10), maskData, null, true);
-		//output.pixels = data;
-		return output;
+		trace("rectangle top left: " + rectangle.x + "/" + rectangle.y);
+		trace("rectangle bottom right: " + rectangle.bottomRight.x + "/" + rectangle.bottomRight.y);
+		trace("target point: " + targetPoint.x + "/" + targetPoint.y);
+		
+		target.copyPixels(data, rectangle, targetPoint, maskData, null, true);
+		return target;
 	}
+	
+	
+	
+	
+	
+	
+	/*
+	 Provides a fast routine to perform pixel manipulation between images with no stretching, rotation, or color effects. 
+	 This method copies a rectangular area of a source image to a rectangular area of the same size at the destination point of the destination BitmapData object.
+
+	If you include the alphaBitmap and alphaPoint parameters, you can use a secondary image as an alpha source for the source image. 
+	If the source image has alpha data, both sets of alpha data are used to composite pixels from the source image to the destination image. 
+	The alphaPoint parameter is the point in the alpha image that corresponds to the upper-left corner of the source rectangle. 
+	Any pixels outside the intersection of the source image and alpha image are not copied to the destination image.
+	The mergeAlpha property controls whether or not the alpha channel is used when a transparent image is copied onto another transparent image. 
+	To copy pixels with the alpha channel data, set the mergeAlpha property to true. By default, the mergeAlpha property is false.
+
+	Parameters
+	
+	
+	sourceBitmapData:BitmapData — The input bitmap image from which to copy pixels. The source image can be a different BitmapData instance, or it can refer to the current BitmapData instance.
+ 
+	sourceRect:Rectangle — A rectangle that defines the area of the source image to use as input.
+ 
+	destPoint:Point — The destination point that represents the upper-left corner of the rectangular area where the new pixels are placed.
+ 
+	alphaBitmapData:BitmapData (default = null) — A secondary, alpha BitmapData object source.
+ 
+	alphaPoint:Point (default = null) — The point in the alpha BitmapData object source that corresponds to the upper-left corner of the sourceRect parameter.
+ 
+	mergeAlpha:Boolean (default = false) — To use the alpha channel, set the value to true. To copy pixels with no alpha channel, set the value to false.
+	*/
+
+	
+
+	
+	
+	/**
+	 * Function that performs color tinting through a direct bitmap operation instead of letting the draw()-function taking care of it.
+	 * Prevents Sprite bitmap manipulation to be overwritten by draw.
+	 * Basically, we do lots of fancy lighting stuff, and draw() would overwrite it all in the end.
+	 * @param	CurrentBitmapData		The bitmapdata of the current object which should be colored through the colorTransformation.
+	 * @param	CurrentColorTransform	A ColorTransform-Object to be applied to the current object.
+	 * @return
+	 */
+	public function bitmapColorTransform(CurrentBitmapData:BitmapData, CurrentColorTransform:ColorTransform):BitmapData
+	{
+		var data:BitmapData = CurrentBitmapData;
+		data.colorTransform(new Rectangle(0, 0, data.width, data.height), CurrentColorTransform);
+		return data;
+	}
+	
+
+	/**
+	 * Helper funtion for getting a flash.geom.Rectangle, representing the intersection between light and target hit by the light.
+	 * @param	Light
+	 * @param	Target
+	 * @return
+	 */
+	public function overlapCheck(Light:FlxObject, Target:FlxObject):Rectangle
+	{
+		var intersectionRect:FlxRect = Light.getHitbox().intersection(Target.getHitbox());
+		return intersectionRect.copyToFlash();
+	}
+	
+	
 	
 	
 	
 	/**
-	 * Takes the image data from two FlxSprites and puts the resulting image into the output FlxSprite.
-	 * Note: It assumes the source and mask are the same size. Different sizes may result in undesired results.
-	 * It works by copying the source image (your picture) into the output sprite. Then it removes all areas of it that do not
-	 * have an alpha color value in the mask image. So if you draw a big black circle in your mask with a transparent edge, you'll
-	 * get a circular image appear.
-	 * May lead to unexecpted results if `sprite`'s graphic does not have an alpha channel.
+	 * A modified version of FlxSpriteUtil.alphaMask.
+	 * Used to negate a colorTransformation on a Sprite or Tilemap when hit by a light source.
 	 * 
-	 * @param	sprite		The source FlxSprite. Typically the one with the image / picture / texture in it.
-	 * @param	mask		The FlxSprite containing the mask to apply. Remember the non-alpha zero areas are the parts that will display.
-	 * @param	output		The FlxSprite you wish the resulting image to be placed in (will adjust width/height of image)
-	 * @return 	The output FlxSprite for chaining
+	 * @param	output		The FlxSprite you wish the resulting image to be placed in (the darkened sprite you want the light cone to shine on)
+	 * @param	source		The source image. The uncolored, unmodified graphic of the output, before it was tinted.
+	 * @param	mask		The mask to apply. This is the bitmap of that part of the light cone graphic that intersects with the target.
+	 * @param	rectangle	The area on the source bitmap from which the unmodified pixels are to be copied from. In local coordinates, as it operates on the bitmap.
+	 * @param	targetPoint	The target point where that rectangle is to be located on the target bitmap.
+	 * @return 	The FlxSprite for chaining
 	 */
-	
-	 /*
-	
-	 
-	 public static function alphaMaskFlxSprite(sprite:FlxSprite, mask:FlxSprite, output:FlxSprite):FlxSprite
+	public static function lightMask(target:FlxSprite, source:Dynamic, mask:Dynamic, rectangle:Rectangle, targetPoint:Point):FlxSprite
 	{
-		sprite.drawFrame();
-		var data:BitmapData = sprite.pixels.clone();
-		data.copyChannel(mask.pixels, new Rectangle(0, 0, sprite.width, sprite.height), new Point(), BitmapDataChannel.ALPHA, BitmapDataChannel.ALPHA);
-		output.pixels = data;	
-		return output;
+		var data:BitmapData = null;
+		if (Std.is(source, String))
+		{
+			data = FlxAssets.getBitmapData(source);
+		}
+		else if (Std.is(source, Class))
+		{
+			data = Type.createInstance(source, []).bitmapData;
+		}
+		else if (Std.is(source, BitmapData))
+		{
+			trace("source is bitmap data");
+			data = cast source;
+			data = data.clone();
+		}
+		else
+		{
+			return null;
+		}
+		var maskData:BitmapData = null;
+		if (Std.is(mask, String))
+		{
+			maskData = FlxAssets.getBitmapData(mask);
+		}
+		else if (Std.is(mask, Class))
+		{
+			trace("mask data is a class");
+			maskData = Type.createInstance(mask, []).bitmapData;
+		}
+		else if (Std.is(mask, BitmapData))
+		{
+			maskData = mask;
+		}
+		else
+		{
+			return null;
+		}
+		
+		trace("rectangle top left: " + rectangle.x + "/" + rectangle.y);
+		trace("rectangle bottom right: " + rectangle.bottomRight.x + "/" + rectangle.bottomRight.y);
+		trace("target point: " + targetPoint.x + "/" + targetPoint.y);
+		
+		target.pixels.copyPixels(data, rectangle, targetPoint, maskData, null, true);
+		return target;
 	}
-	*/
+	
+	
 	
 	
 	/**
@@ -205,6 +530,8 @@ class PlayState extends FlxState
 	override public function update(elapsed):Void
 	{
 		super.update(elapsed);
+		this.lightingAnimationHandler(this.lightGlow, this.girlSprite, this.girlSprite.framePixels);
+		this.girlSprite.drawFrame(true);
 	}	
 	
 
