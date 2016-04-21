@@ -30,7 +30,9 @@ import flixel.math.FlxPoint;
 import flixel.system.FlxAssets;
 import flixel.tweens.FlxTween;
 import flixel.tile.FlxTilemap;
-
+import flixel.FlxCamera;
+import flixel.tile.FlxTilemapBuffer;
+import flixel.system.FlxAssets.FlxTilemapGraphicAsset;
 
 
 
@@ -55,8 +57,8 @@ class PlayState extends FlxState
 	public var lightGlow:FlxSprite;
 	
 	
-	public var brickSprite:FlxSprite;
-	public var brickSprite2:FlxSprite;
+	public var couchSprite:FlxSprite;
+	public var couchSprite2:FlxSprite;
 	public var brickSpriteText:FlxText;
 	public var lightGlow2:FlxSprite;
 	
@@ -87,11 +89,11 @@ class PlayState extends FlxState
 		
 		
 		this.brickTilemap = new FlxTilemap();
-		this.brickTilemap.loadMapFrom2DArray([[0, 1], [2, 3]], "assets/images/ZiegelUnregV1.png", 64, 64, 0, 0, 0);
+		this.brickTilemap.loadMapFrom2DArray([[0, 1, 0], [2, 3, 2]], "assets/images/ZiegelUnregV1.png", 64, 64, 0, 0, 0);
 		this.add(brickTilemap);
 		
 		this.brickTilemap2 = new FlxTilemap();
-		this.brickTilemap2.loadMapFrom2DArray([[0, 1], [2, 3]], "assets/images/ZiegelUnregV1.png", 64, 64, 0, 0, 0);
+		this.brickTilemap2.loadMapFrom2DArray([[0, 1, 0], [2, 3,2 ]], "assets/images/ZiegelUnregV1.png", 64, 64, 0, 0, 0);
 		this.brickTilemap2.y = 250;
 		this.add(brickTilemap2);
 		
@@ -107,10 +109,7 @@ class PlayState extends FlxState
 		//this.add(this.lightGlow);
 		
 		
-		this.lightingTileHandler(this.lightGlow, this.brickTilemap);
-	
-		
-
+		this.lightingTileHandler(this.lightGlow, this.brickTilemap, "assets/images/ZiegelUnregV1.png");
 		
 		
 		
@@ -121,16 +120,16 @@ class PlayState extends FlxState
 		
 		
 		
-		this.brickSprite = new FlxSprite(200, 0);
-		this.brickSprite.pixels = FlxAssets.getBitmapData("assets/images/ZiegelUnregV1.png");
+		this.couchSprite = new FlxSprite(250, 30);
+		this.couchSprite.pixels = FlxAssets.getBitmapData("assets/images/gameObject_armchairB.png");
 		//this.brickSprite.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, true);
-		this.add(this.brickSprite);
+		this.add(this.couchSprite);
 		
 		
 		
 		var testColorTransform:ColorTransform = new ColorTransform(0.2, 0.2, 0.2, 1.0, 0, 0, 0, 0);
-		this.brickSprite.framePixels.colorTransform(this.brickSprite.getHitbox().copyToFlash(), testColorTransform);
-		this.brickSprite.pixels = this.bitmapColorTransform(brickSprite.pixels, testColorTransform);
+		this.couchSprite.framePixels.colorTransform(this.couchSprite.getHitbox().copyToFlash(), testColorTransform);
+		this.couchSprite.pixels = this.bitmapColorTransform(couchSprite.pixels, testColorTransform);
 		
 		
 		//For some reason, when coloring the sprite with one of those two methods, the lighting will not work
@@ -140,20 +139,20 @@ class PlayState extends FlxState
 
 		
 		
-		this.brickSpriteText = new FlxText(220, 200, 0, "FlxSprite");
+		this.brickSpriteText = new FlxText(270, 200, 0, "FlxSprite");
 		this.add(brickSpriteText);
 		
-		this.brickSprite2 = new FlxSprite(200, 250);
-		this.brickSprite2.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, true);
-		this.add(this.brickSprite2);
+		this.couchSprite2 = new FlxSprite(250, 250);
+		this.couchSprite2.loadGraphic("assets/images/gameObject_armchairB.png", false, 59, 45, true);
+		this.add(this.couchSprite2);
 		
-		this.lightGlow2 = new FlxSprite(190, 24);
+		this.lightGlow2 = new FlxSprite(240, 24);
 		this.lightGlow2.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
 		//this.add(this.lightGlow2);
 		
 
 		
-		this.lightingHandler(this.lightGlow2, this.brickSprite);
+		this.lightingHandler(this.lightGlow2, this.couchSprite, "assets/images/gameObject_armchairB.png");
 		
 		
 		
@@ -164,7 +163,7 @@ class PlayState extends FlxState
 		
 		
 		
-		this.lightGlow3 = new FlxSprite(400, 24);
+		this.lightGlow3 = new FlxSprite(450, 24);
 		this.lightGlow3.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
 		//this.lightGlow.loadGraphic("assets/images/greenbox.png", false, 128, 128, true);
 		this.add(this.lightGlow3);
@@ -174,7 +173,7 @@ class PlayState extends FlxState
 		//this.test.pixels = FlxAssets.getBitmapData("assets/images/ZiegelUnregV1.png");
 		//this.add(this.test);
 		
-		this.girlSprite = new FlxSprite(400, 20);
+		this.girlSprite = new FlxSprite(450, 20);
 		
 		
 		girlSprite.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, false);
@@ -185,7 +184,7 @@ class PlayState extends FlxState
 		this.girlSprite.color = 0x00FFFF;
 		this.girlSprite.drawFrame(true);
 		
-		this.girlSpriteText = new FlxText(420, 200, 0, "Animated FlxSprite");
+		this.girlSpriteText = new FlxText(470, 200, 0, "Animated FlxSprite");
 		this.add(girlSpriteText);
 		
 		//this.girl.framePixels.colorTransform(this.girl.getHitbox().copyToFlash(), testColorTransform);
@@ -194,7 +193,7 @@ class PlayState extends FlxState
 		//this.girl.framePixels = this.bitmapColorTransform(girl.framePixels, testColorTransform);
 
 		
-		this.girlSprite2 = new FlxSprite(400, 250);
+		this.girlSprite2 = new FlxSprite(450, 250);
 		girlSprite2.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, false);
 		girlSprite2.animation.add("running", [0, 1, 2, 3, 4, 5, 6, 7], 16);
 		this.add(girlSprite2);
@@ -202,12 +201,16 @@ class PlayState extends FlxState
 		
 		this.lightingAnimationHandler(this.lightGlow3, this.girlSprite, this.girlSprite.framePixels);
 		
-		
-		
-		
-		
 		super.create();
+		
+		
 	}
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * Checks if light is hitting a FlxTilemap; and if yes, handles the lighting of it.
@@ -218,8 +221,45 @@ class PlayState extends FlxState
 	 * The original, uncolored pixels of the target object are copied at the position where the light cone hits it. 
 	 * Here, those pixels are copied into the bitmapdata of a newly created FlxSprite.
 	 */
-	public function lightingTileHandler(Light:FlxSprite, Target:FlxTilemap):Void
+	public function lightingTileHandler(Light:FlxSprite, Target:FlxTilemap, TargetSource:String):Void
 	{
+		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
+		
+		if ((intersectionRect != null) && (intersectionRect.width > 0) && (intersectionRect.height > 0))
+		{
+			get2DArrayOfTilemapOverlap(Target, 64, 64, intersectionRect);
+			var overlaySprite:FlxSprite = _puzzleItTogether(get2DArrayOfTilemapOverlap(Target, 64, 64, intersectionRect), Target.frames.parent.bitmap, 64, 64);
+			this.add(overlaySprite);
+			
+			var testColorTransform:ColorTransform = new ColorTransform(0.2, 0.2, 0.2, 1.0, 0, 0, 0, 0);
+			overlaySprite.framePixels.colorTransform(overlaySprite.getHitbox().copyToFlash(), testColorTransform);
+			overlaySprite.pixels = this.bitmapColorTransform(overlaySprite.pixels, testColorTransform);
+			
+			
+			var sourceRectLocal = new Rectangle(intersectionRect.x - Target.x, intersectionRect.y - Target.y, intersectionRect.width, intersectionRect.height);
+			var targetPointLocal = new Point(intersectionRect.x - Target.x, intersectionRect.y - Target.y);
+			
+			var maskRectBitmap = new BitmapData(Std.int(intersectionRect.width), Std.int(intersectionRect.height));
+			maskRectBitmap.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), new Point());
+			
+			overlaySprite = lightMask(overlaySprite, TargetSource, maskRectBitmap, sourceRectLocal, targetPointLocal);
+			
+		}
+		
+		
+
+
+			
+			
+			
+			//I have manually inserted the link to the asset file here.
+			//I could operate on a childclass of FlxSprite which has this link as a static class attribute
+			//But ir would be more elegant if I could somehow access the original, unmodified bitmapdata, which must be stored somewhere - just haven't found it yet.
+			
+		
+		
+		/*
+		
 		//Creates the intersection Rectangle between the Light and the Target (if existent) and transforms it from FlxRect to flash.geom.Rectangle
 		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
 		
@@ -250,12 +290,19 @@ class PlayState extends FlxState
 			overlaySprite.makeGraphic(Std.int(intersectionRect.width), Std.int(intersectionRect.height),0x00000000);
 			//overlaySprite.pixels = maskRectBitmap;
 			
+		
+			
+			
+			
 			//Actually, here I am cheating: I am loading the original assets of the tilemap. But this only works because they are already in the right order;
 			//Something which normally cannot be expected for a Tilemap.
 			//To make this work, I would need access to the Bitmapdata of the tilemap!
-			overlaySprite = lightMask(overlaySprite, "assets/images/ZiegelUnregV1.png", maskRectBitmap, sourceRectLocal, new Point(0, 0));
-			this.add(overlaySprite);
+			//overlaySprite = lightMask(overlaySprite, "assets/images/ZiegelUnregV1.png", maskRectBitmap, sourceRectLocal, new Point(0, 0));
+			//overlaySprite = lightMask(overlaySprite, buffer.pixels, maskRectBitmap, sourceRectLocal, new Point(0, 0));
+			//this.add(overlaySprite);
+			//overlaySprite.y = 400;
 		}
+		*/
 	}
 	
 	
@@ -272,7 +319,7 @@ class PlayState extends FlxState
 	 * 
 	 * The original, uncolored pixels of the target object are copied at the position where the light cone hits it.
 	 */
-	public function lightingHandler(Light:FlxSprite, Target:FlxSprite):Void
+	public function lightingHandler(Light:FlxSprite, Target:FlxSprite, TargetSource:String):Void
 	{
 		//Creates the intersection Rectangle between the Light and the Target (if existent) and transforms it from FlxRect to flash.geom.Rectangle
 		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
@@ -290,7 +337,7 @@ class PlayState extends FlxState
 			//I have manually inserted the link to the asset file here.
 			//I could operate on a childclass of FlxSprite which has this link as a static class attribute
 			//But ir would be more elegant if I could somehow access the original, unmodified bitmapdata, which must be stored somewhere - just haven't found it yet.
-			Target = lightMask(Target, "assets/images/ZiegelUnregV1.png", maskRectBitmap, sourceRectLocal, targetPointLocal);
+			Target = lightMask(Target, TargetSource, maskRectBitmap, sourceRectLocal, targetPointLocal);
 		}
 	}
 	
@@ -515,6 +562,149 @@ class PlayState extends FlxState
 	
 	
 	
+	public function get2DArrayOfTilemapOverlap(Tilemap:FlxTilemap, TileWidth:Int, TileHeight:Int, OverlapRect: Rectangle):Array<Array<Int>>
+	{
+		//get upper left tile that overlaps with the Light source Rectangle
+		var rowNumber:Int = Std.int(OverlapRect.y / TileHeight);//first row numer is zero
+		var colNumber:Int = Std.int(OverlapRect.x / TileWidth);
+		
+		//As we will go through the tiles and add them to the _tileArray, we'll need a pointer to the current position in tiles
+		var rowPointer:Int = rowNumber;
+		var colPointer:Int = colNumber;
+		
+		var _tileArray:Array<Array<Int>> = [];
+		
+		var cornerPoint:Point = new Point(OverlapRect.topLeft.x, OverlapRect.topLeft.y);
+		
+		
+		
+		while (cornerPoint.y <= OverlapRect.bottom)
+		{
+			_tileArray.push([]);
+			recAddTiles(Tilemap, _tileArray[rowPointer], rowPointer, cornerPoint, TileWidth, colPointer, OverlapRect);
+			colPointer = colNumber;
+			cornerPoint.y += TileHeight;
+			cornerPoint.x = OverlapRect.left;
+			rowPointer ++;
+		}
+		
+
+		trace(_tileArray);
+		return _tileArray;
+		
+		
+		
+		
+	}
+	
+	private function recAddTiles(Tilemap:FlxTilemap, RowArray:Array<Int>, RowPointer:Int, Cornerpoint:Point, TileWidth:Int, ColPointer:Int, OverlapRect:Rectangle):Void
+	{
+		//trace("recAddTiles called");
+		var i:Int = (RowPointer * (Tilemap.widthInTiles - 1) + ColPointer);
+		RowArray.push(Tilemap._tileObjects[i].index);
+		Cornerpoint.x += TileWidth;
+		ColPointer ++;
+		if (Cornerpoint.x <= OverlapRect.right)
+		{
+			recAddTiles(Tilemap, RowArray, RowPointer, Cornerpoint, TileWidth, ColPointer, OverlapRect);
+		}
+		
+	}
+	
+	private function _puzzleItTogether(MapData:Array<Array<Int>>, TileGraphic:FlxTilemapGraphicAsset, TileWidth:Int = 0, TileHeight:Int = 0):FlxSprite
+	{
+		
+		
+		var leSprite:FlxSprite = new FlxSprite(0, 0);
+		//leSprite.width = MapData.length * TileWidth;
+		//leSprite.height = MapData[0].length * TileHeight;
+		leSprite.makeGraphic(MapData.length * TileWidth, MapData[0].length * TileHeight);
+		
+		for (i in 0...MapData[0].length)
+		{
+			for (j in 0...MapData.length)
+			{
+				var _bitmap = new BitmapData(TileWidth, TileHeight);
+				leSprite.pixels.copyPixels(TileGraphic, new Rectangle(j * TileWidth, i * TileHeight, TileWidth, TileHeight), new Point (j * TileWidth, i * TileHeight), null, null, true);
+			}
+		}
+		return leSprite;
+	}
+	
+	
+	
+	/*
+	public function getBitmapDataOfTilemap(Tilemap:FlxTilemap):BitmapData
+	{
+		// don't try to render a tilemap that isn't loaded yet
+			if (Tilemap.graphic == null)
+			{
+				trace("getBitmapDataOfTilemap-Error: Tilemap.graphic == null");
+				return null;
+			}
+			
+			var camera:FlxCamera;
+			var buffer:FlxTilemapBuffer = null;
+			var l:Int = Tilemap.cameras.length;
+			
+			for (i in 0...l)
+			{
+				camera = Tilemap.cameras[i];
+				
+				if (!camera.visible || !camera.exists)
+				{
+					continue;
+				}
+				
+				if (Tilemap._buffers[i] == null)
+				{
+					trace("new buffer created");
+					Tilemap._buffers[i] = createBuffer(Tilemap, camera);
+				}
+				
+				buffer = Tilemap._buffers[i];
+				trace("buffer " + i + " created.");
+			}
+			
+			if (FlxG.renderBlit)
+			{
+				getScreenPosition(_point, camera).subtractPoint(offset).add(buffer.x, buffer.y);
+				buffer.dirty = buffer.dirty || _point.x > 0 || (_point.y > 0) || (_point.x + buffer.width < camera.width) || (_point.y + buffer.height < camera.height);
+				
+				if (buffer.dirty)
+				{
+					drawTilemap(buffer, camera);
+				}
+				
+				getScreenPosition(_point, camera).subtractPoint(offset).add(buffer.x, buffer.y).copyToFlash(_flashPoint);
+				buffer.draw(camera, _flashPoint, scale.x, scale.y);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			return buffer.pixels;
+	}
+	*/
+	
+	
+	
+	
+	
+	private inline function createBuffer(Tilemap:FlxTilemap, camera:FlxCamera):FlxTilemapBuffer
+	{
+		var buffer = new FlxTilemapBuffer(64, 64, Tilemap.widthInTiles, Tilemap.widthInTiles, camera, Tilemap.scale.x, Tilemap.scale.y);
+		buffer.pixelPerfectRender = Tilemap.pixelPerfectRender;
+		return buffer;
+	}
+	
+	
+	
+	
 	/**
 	 * Function that is called when this state is destroyed - you might want to 
 	 * consider setting all objects this state uses to null to help garbage collection.
@@ -530,8 +720,8 @@ class PlayState extends FlxState
 	override public function update(elapsed):Void
 	{
 		super.update(elapsed);
-		this.lightingAnimationHandler(this.lightGlow, this.girlSprite, this.girlSprite.framePixels);
-		this.girlSprite.drawFrame(true);
+		//this.lightingAnimationHandler(this.lightGlow, this.girlSprite, this.girlSprite.framePixels);
+		//this.girlSprite.drawFrame(true);
 	}	
 	
 
