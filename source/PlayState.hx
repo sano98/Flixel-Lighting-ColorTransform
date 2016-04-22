@@ -89,11 +89,11 @@ class PlayState extends FlxState
 		
 		
 		this.brickTilemap = new FlxTilemap();
-		this.brickTilemap.loadMapFrom2DArray([[0, 1, 0], [2, 3, 2]], "assets/images/ZiegelUnregV1.png", 64, 64, 0, 0, 0);
+		this.brickTilemap.loadMapFrom2DArray([[0, 1, 0], [2, 3, 2]], "assets/images/Ziegel_numbered.png", 64, 64, 0, 0, 0);
 		this.add(brickTilemap);
 		
 		this.brickTilemap2 = new FlxTilemap();
-		this.brickTilemap2.loadMapFrom2DArray([[0, 1, 0], [2, 3,2 ]], "assets/images/ZiegelUnregV1.png", 64, 64, 0, 0, 0);
+		this.brickTilemap2.loadMapFrom2DArray([[0, 1, 0], [2, 3, 2]], "assets/images/Ziegel_numbered.png", 64, 64, 0, 0, 0);
 		this.brickTilemap2.y = 250;
 		this.add(brickTilemap2);
 		
@@ -103,13 +103,13 @@ class PlayState extends FlxState
 		
 		this.brickTilemap.color = 0x00FFFF;
 		
-		this.lightGlow = new FlxSprite(24, 24);
+		this.lightGlow = new FlxSprite(150, 100);
 		this.lightGlow.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
 		//this.lightGlow.loadGraphic("assets/images/greenbox.png", false, 128, 128, true);
 		//this.add(this.lightGlow);
 		
 		
-		this.lightingTileHandler(this.lightGlow, this.brickTilemap, "assets/images/ZiegelUnregV1.png");
+		this.lightingTileHandler(this.lightGlow, this.brickTilemap, "assets/images/Ziegel_numbered.png");
 		
 		
 		
@@ -227,17 +227,17 @@ class PlayState extends FlxState
 		
 		if ((intersectionRect != null) && (intersectionRect.width > 0) && (intersectionRect.height > 0))
 		{
-			get2DArrayOfTilemapOverlap(Target, 64, 64, intersectionRect);
-			var overlaySprite:FlxSprite = _puzzleItTogether(get2DArrayOfTilemapOverlap(Target, 64, 64, intersectionRect), Target.frames.parent.bitmap, 64, 64);
+			var overlaySprite:FlxSprite = _puzzleItTogether(get2DArrayOfTilemapOverlap(Target, 64, 64, intersectionRect), Target, 64, 64, intersectionRect);
 			this.add(overlaySprite);
+			
 			
 			var testColorTransform:ColorTransform = new ColorTransform(0.2, 0.2, 0.2, 1.0, 0, 0, 0, 0);
 			overlaySprite.framePixels.colorTransform(overlaySprite.getHitbox().copyToFlash(), testColorTransform);
 			overlaySprite.pixels = this.bitmapColorTransform(overlaySprite.pixels, testColorTransform);
 			
 			
-			var sourceRectLocal = new Rectangle(intersectionRect.x - Target.x, intersectionRect.y - Target.y, intersectionRect.width, intersectionRect.height);
-			var targetPointLocal = new Point(intersectionRect.x - Target.x, intersectionRect.y - Target.y);
+			var sourceRectLocal = new Rectangle(intersectionRect.x - Target.x - (overlaySprite.x - Target.x), intersectionRect.y - Target.y - (overlaySprite.y - Target.y), intersectionRect.width, intersectionRect.height);
+			var targetPointLocal = new Point(intersectionRect.x - Target.x - (overlaySprite.x - Target.x), intersectionRect.y - Target.y - (overlaySprite.y - Target.y));
 			
 			var maskRectBitmap = new BitmapData(Std.int(intersectionRect.width), Std.int(intersectionRect.height));
 			maskRectBitmap.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), new Point());
@@ -246,63 +246,6 @@ class PlayState extends FlxState
 			
 		}
 		
-		
-
-
-			
-			
-			
-			//I have manually inserted the link to the asset file here.
-			//I could operate on a childclass of FlxSprite which has this link as a static class attribute
-			//But ir would be more elegant if I could somehow access the original, unmodified bitmapdata, which must be stored somewhere - just haven't found it yet.
-			
-		
-		
-		/*
-		
-		//Creates the intersection Rectangle between the Light and the Target (if existent) and transforms it from FlxRect to flash.geom.Rectangle
-		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
-		
-		if ((intersectionRect != null) && (intersectionRect.width > 0) && (intersectionRect.height > 0))
-		{
-			trace("intersect not null");
-			
-			//The area on the source bitmap from which the unmodified pixels are to be copied from. In local coordinates, as it operates on the bitmap.
-			var sourceRectLocal = new Rectangle(intersectionRect.x - Target.x, intersectionRect.y - Target.y, intersectionRect.width, intersectionRect.height);
-			
-			//The target point where that rectangle is to be located on the target bitmap.
-			var targetPointLocal = new Point(intersectionRect.x - Target.x, intersectionRect.y - Target.y);
-			
-			//The mask to apply. This is the bitmap of that part of the light cone graphic that intersects with the target.
-			var maskRectBitmap = new BitmapData(Std.int(intersectionRect.width), Std.int(intersectionRect.height));
-			
-			
-			trace("sourceRectLocal top left: " + sourceRectLocal.x + "/" + sourceRectLocal.y);
-			trace("sourceRectLocal bottom right: " + sourceRectLocal.bottomRight.x + "/" + sourceRectLocal.bottomRight.y);
-			trace("target point: " + targetPointLocal.x + "/" + targetPointLocal.y);
-			
-			//this.brickSprite.pixels.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), targetPointLocal);
-			
-			maskRectBitmap.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), new Point(0, 0));
-			
-			//The new sprite with the graphic of the lightened tielmap, placed axactly over the tilemap at the corresponding position
-			var overlaySprite:FlxSprite = new FlxSprite(intersectionRect.x, intersectionRect.y);
-			overlaySprite.makeGraphic(Std.int(intersectionRect.width), Std.int(intersectionRect.height),0x00000000);
-			//overlaySprite.pixels = maskRectBitmap;
-			
-		
-			
-			
-			
-			//Actually, here I am cheating: I am loading the original assets of the tilemap. But this only works because they are already in the right order;
-			//Something which normally cannot be expected for a Tilemap.
-			//To make this work, I would need access to the Bitmapdata of the tilemap!
-			//overlaySprite = lightMask(overlaySprite, "assets/images/ZiegelUnregV1.png", maskRectBitmap, sourceRectLocal, new Point(0, 0));
-			//overlaySprite = lightMask(overlaySprite, buffer.pixels, maskRectBitmap, sourceRectLocal, new Point(0, 0));
-			//this.add(overlaySprite);
-			//overlaySprite.y = 400;
-		}
-		*/
 	}
 	
 	
@@ -572,36 +515,37 @@ class PlayState extends FlxState
 		var rowPointer:Int = rowNumber;
 		var colPointer:Int = colNumber;
 		
+		
 		var _tileArray:Array<Array<Int>> = [];
 		
 		var cornerPoint:Point = new Point(OverlapRect.topLeft.x, OverlapRect.topLeft.y);
 		
 		
-		
-		while (cornerPoint.y <= OverlapRect.bottom)
+		while (cornerPoint.y <= OverlapRect.bottom) 
 		{
 			_tileArray.push([]);
-			recAddTiles(Tilemap, _tileArray[rowPointer], rowPointer, cornerPoint, TileWidth, colPointer, OverlapRect);
+			recAddTiles(Tilemap, _tileArray[_tileArray.length - 1], rowPointer, cornerPoint, TileWidth, colPointer, OverlapRect);
 			colPointer = colNumber;
 			cornerPoint.y += TileHeight;
 			cornerPoint.x = OverlapRect.left;
 			rowPointer ++;
 		}
 		
-
 		trace(_tileArray);
 		return _tileArray;
-		
-		
-		
-		
 	}
 	
 	private function recAddTiles(Tilemap:FlxTilemap, RowArray:Array<Int>, RowPointer:Int, Cornerpoint:Point, TileWidth:Int, ColPointer:Int, OverlapRect:Rectangle):Void
 	{
 		//trace("recAddTiles called");
-		var i:Int = (RowPointer * (Tilemap.widthInTiles - 1) + ColPointer);
-		RowArray.push(Tilemap._tileObjects[i].index);
+		var i:Int = (RowPointer * (Tilemap.widthInTiles) + ColPointer);
+		
+		if (i >= Tilemap._data.length)
+		{
+			return;
+		}
+		
+		RowArray.push(Tilemap._data[i]);
 		Cornerpoint.x += TileWidth;
 		ColPointer ++;
 		if (Cornerpoint.x <= OverlapRect.right)
@@ -611,23 +555,46 @@ class PlayState extends FlxState
 		
 	}
 	
-	private function _puzzleItTogether(MapData:Array<Array<Int>>, TileGraphic:FlxTilemapGraphicAsset, TileWidth:Int = 0, TileHeight:Int = 0):FlxSprite
+	/**
+	 * This function takes an 2-dimensional Int array and a corresponding Tilemap and creates a FlxSprite that contains the same graphical content.
+	 * It basically creates a "movable wall" in front of the tilemap with exact the same graphic as the tilemap behind.
+	 * On this FlxSprite, the lighting effects take place.
+	 * @param	MapData		2-dimensional Int-Array containing the indices of the tiles whose bitmapdata is to be copied onto the sprite. Count starts with zero.
+	 * @param	TileGraphic	The graphic of the Tilemap. Needs to be something that can be converted into BitmapData. It is the original Tilesheet-graphic, without manipulations like tint, rotate, etc.
+	 * @param	TileWidth	Width of the tiles used on the TileMap.
+	 * @param	TileHeight	Width of the tiles used on the TileMap.
+	 * @param	OverlapRect	The rectangle of the overlap between Tilemap and Lightsource.
+	 * @return	A FlxSprite with the correct graphic of the Tilemap behind it. Must be a multiple of the tilesizes, no matter how large or small the OverlapRect is.
+	 */
+	private function _puzzleItTogether(MapData:Array<Array<Int>>, TileMap:FlxTilemap, TileWidth:Int = 0, TileHeight:Int = 0, OverlapRect:Rectangle):FlxSprite
 	{
+		//TileGraphic:FlxTilemapGraphicAsset
+		//get upper left tile that overlaps with the Light source Rectangle
+		var rowNumber:Int = Std.int(OverlapRect.y / TileHeight);//first row numer is zero
+		var colNumber:Int = Std.int(OverlapRect.x / TileWidth);
 		
+		var leSprite:FlxSprite = new FlxSprite(colNumber * TileWidth, rowNumber * TileHeight);
+		leSprite.makeGraphic(MapData[0].length * TileWidth, MapData.length * TileHeight);
 		
-		var leSprite:FlxSprite = new FlxSprite(0, 0);
-		//leSprite.width = MapData.length * TileWidth;
-		//leSprite.height = MapData[0].length * TileHeight;
-		leSprite.makeGraphic(MapData.length * TileWidth, MapData[0].length * TileHeight);
+		var originalWidthInTiles:Int = Std.int(TileMap.frames.parent.width / TileWidth);
 		
-		for (i in 0...MapData[0].length)
+		// i is the y-value, indicating the row; j is the x-value, indicating the column
+		for (i in 0...MapData.length)
 		{
-			for (j in 0...MapData.length)
+			for (j in 0...MapData[i].length)
 			{
-				var _bitmap = new BitmapData(TileWidth, TileHeight);
-				leSprite.pixels.copyPixels(TileGraphic, new Rectangle(j * TileWidth, i * TileHeight, TileWidth, TileHeight), new Point (j * TileWidth, i * TileHeight), null, null, true);
+				trace("MapData[i][j]: " + MapData[i][j]);
+				var localRowNumber:Int = Std.int((MapData[i][j]) / originalWidthInTiles);
+				var localColNumer:Int = (MapData[i][j]) - (originalWidthInTiles * localRowNumber);
+				trace("localRowNumber: " + localRowNumber);
+				trace("localColNumer: " + localColNumer);
+				leSprite.pixels.copyPixels(TileMap.frames.parent.bitmap, new Rectangle(localColNumer * TileWidth, localRowNumber * TileHeight, TileWidth, TileHeight), new Point (j * TileWidth, i * TileHeight), null, null, true);
 			}
 		}
+		
+		//leSprite.pixels.copyPixels(TileMap.frames.parent.bitmap, new Rectangle(0, 0, 128, 128), new Point (0, 0), null, null, true);
+		
+		
 		return leSprite;
 	}
 	
