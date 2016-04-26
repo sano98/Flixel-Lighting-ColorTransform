@@ -41,15 +41,7 @@ import flixel.system.FlxAssets.FlxTilemapGraphicAsset;
  */
 class PlayState extends FlxState
 {
-	/**
-	* An invisible dummy sprite which is moved by the mousewheel. It is as an anchor for camera movement.
-	*/
-	private var dolly:FlxSprite;
 	
-	/**
-	* Helper variable for dolly positioning.
-	*/
-	private var dollyDestination:Int;
 	
 	public var brickTilemap:FlxTilemap;
 	public var brickTilemap2:FlxTilemap;
@@ -105,7 +97,6 @@ class PlayState extends FlxState
 		
 		this.lightGlow = new FlxSprite(150, 100);
 		this.lightGlow.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
-		//this.lightGlow.loadGraphic("assets/images/greenbox.png", false, 128, 128, true);
 		//this.add(this.lightGlow);
 		
 		
@@ -122,7 +113,6 @@ class PlayState extends FlxState
 		
 		this.couchSprite = new FlxSprite(250, 30);
 		this.couchSprite.pixels = FlxAssets.getBitmapData("assets/images/gameObject_armchairB.png");
-		//this.brickSprite.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, true);
 		this.add(this.couchSprite);
 		
 		
@@ -162,27 +152,33 @@ class PlayState extends FlxState
 		
 		
 		
-		
 		this.lightGlow3 = new FlxSprite(450, 24);
 		this.lightGlow3.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
-		//this.lightGlow.loadGraphic("assets/images/greenbox.png", false, 128, 128, true);
 		this.add(this.lightGlow3);
 		
-		//this.test = new FlxSprite(100, 100);
-		//this.test.loadGraphic("assets/images/ZiegelUnregV1.png", false, 128, 128, true);
-		//this.test.pixels = FlxAssets.getBitmapData("assets/images/ZiegelUnregV1.png");
-		//this.add(this.test);
 		
 		this.girlSprite = new FlxSprite(450, 20);
-		
-		
 		girlSprite.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, false);
 		//this.girl.pixels = this.bitmapColorTransform(girl.pixels, testColorTransform);
-		girlSprite.animation.add("running", [0, 1, 2, 3, 4, 5, 6, 7], 2);
+		girlSprite.animation.add("running", [0, 1, 2, 3, 4, 5, 6, 7], 16);
+		girlSprite.animation.callback = function(n:String, i:Int, j:Int):Void
+		{
+			trace("frame changed");
+			//this.lightingAnimationHandler(this.lightGlow3, this.girlSprite, this.girlSprite.framePixels);
+			girlSprite.framePixels = new BitmapData(48, 61, true, (Math.floor(Math.random() * (4294967295 - 0 + 1)) + 0));
+			
+			//neither of those work:
+			//girlSprite.frame.parent.bitmap = new BitmapData(48, 61);
+			//girlSprite.updateFramePixels = new BitmapData(48, 61);
+			//girlSprite.frames.getByIndex(animation.curAnim.curFrame).paint(
+			//girlSprite.set = new BitmapData(348, 61);
+		}
+		
+		
 		this.add(girlSprite);
-		girlSprite.animation.play("running");
+		this.girlSprite.animation.play("running");
 		this.girlSprite.color = 0x00FFFF;
-		this.girlSprite.drawFrame(true);
+		this.girlSprite.drawFrame(false);
 		
 		this.girlSpriteText = new FlxText(470, 200, 0, "Animated FlxSprite");
 		this.add(girlSpriteText);
@@ -199,7 +195,7 @@ class PlayState extends FlxState
 		this.add(girlSprite2);
 		girlSprite2.animation.play("running");
 		
-		this.lightingAnimationHandler(this.lightGlow3, this.girlSprite, this.girlSprite.framePixels);
+		//this.lightingAnimationHandler(this.lightGlow3, this.girlSprite, this.girlSprite.framePixels);
 		
 		super.create();
 		
@@ -503,6 +499,11 @@ class PlayState extends FlxState
 	}
 	
 	
+	public function animationCallback(animationName:String, currentFrame:Int, currentFrameIndex:Int):Void
+	{
+		trace("framechange");
+	}
+	
 	
 	
 	public function get2DArrayOfTilemapOverlap(Tilemap:FlxTilemap, TileWidth:Int, TileHeight:Int, OverlapRect: Rectangle):Array<Array<Int>>
@@ -594,69 +595,9 @@ class PlayState extends FlxState
 		
 		//leSprite.pixels.copyPixels(TileMap.frames.parent.bitmap, new Rectangle(0, 0, 128, 128), new Point (0, 0), null, null, true);
 		
-		
 		return leSprite;
 	}
 	
-	
-	
-	/*
-	public function getBitmapDataOfTilemap(Tilemap:FlxTilemap):BitmapData
-	{
-		// don't try to render a tilemap that isn't loaded yet
-			if (Tilemap.graphic == null)
-			{
-				trace("getBitmapDataOfTilemap-Error: Tilemap.graphic == null");
-				return null;
-			}
-			
-			var camera:FlxCamera;
-			var buffer:FlxTilemapBuffer = null;
-			var l:Int = Tilemap.cameras.length;
-			
-			for (i in 0...l)
-			{
-				camera = Tilemap.cameras[i];
-				
-				if (!camera.visible || !camera.exists)
-				{
-					continue;
-				}
-				
-				if (Tilemap._buffers[i] == null)
-				{
-					trace("new buffer created");
-					Tilemap._buffers[i] = createBuffer(Tilemap, camera);
-				}
-				
-				buffer = Tilemap._buffers[i];
-				trace("buffer " + i + " created.");
-			}
-			
-			if (FlxG.renderBlit)
-			{
-				getScreenPosition(_point, camera).subtractPoint(offset).add(buffer.x, buffer.y);
-				buffer.dirty = buffer.dirty || _point.x > 0 || (_point.y > 0) || (_point.x + buffer.width < camera.width) || (_point.y + buffer.height < camera.height);
-				
-				if (buffer.dirty)
-				{
-					drawTilemap(buffer, camera);
-				}
-				
-				getScreenPosition(_point, camera).subtractPoint(offset).add(buffer.x, buffer.y).copyToFlash(_flashPoint);
-				buffer.draw(camera, _flashPoint, scale.x, scale.y);
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			return buffer.pixels;
-	}
-	*/
 	
 	
 	
