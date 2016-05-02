@@ -33,6 +33,8 @@ import flixel.tile.FlxTilemap;
 import flixel.FlxCamera;
 import flixel.tile.FlxTilemapBuffer;
 import flixel.system.FlxAssets.FlxTilemapGraphicAsset;
+import flixel.graphics.frames.FlxFrame;
+import flixel.graphics.FlxGraphic;
 
 
 
@@ -41,7 +43,7 @@ import flixel.system.FlxAssets.FlxTilemapGraphicAsset;
  */
 class PlayState extends FlxState
 {
-	
+	public var objectGroup:FlxTypedGroup<FlxObject>;
 	
 	public var brickTilemap:FlxTilemap;
 	public var brickTilemap2:FlxTilemap;
@@ -75,6 +77,9 @@ class PlayState extends FlxState
 		FlxG.worldBounds.set( 0, 0, 640, 480); 
 		FlxG.camera.setScrollBoundsRect(0, 0, 640, 480, true);
 		
+		this.objectGroup = new FlxTypedGroup<FlxObject>();
+		this.add(this.objectGroup);
+		
 		//////////////////////////////////////////////////////
 		////	FlxTilemap Lighting
 		///////////////////////////////////////////////////////
@@ -82,15 +87,15 @@ class PlayState extends FlxState
 		
 		this.brickTilemap = new FlxTilemap();
 		this.brickTilemap.loadMapFrom2DArray([[0, 1, 0], [2, 3, 2]], "assets/images/Ziegel_numbered.png", 64, 64, 0, 0, 0);
-		this.add(brickTilemap);
+		this.objectGroup.add(brickTilemap);
 		
 		this.brickTilemap2 = new FlxTilemap();
 		this.brickTilemap2.loadMapFrom2DArray([[0, 1, 0], [2, 3, 2]], "assets/images/Ziegel_numbered.png", 64, 64, 0, 0, 0);
 		this.brickTilemap2.y = 250;
-		this.add(brickTilemap2);
+		this.objectGroup.add(brickTilemap2);
 		
 		this.brickTilemapText = new FlxText(20, 200, 0, "FlxTilemap");
-		this.add(brickTilemapText);
+		this.objectGroup.add(brickTilemapText);
 		
 		
 		this.brickTilemap.color = 0x00FFFF;
@@ -100,7 +105,7 @@ class PlayState extends FlxState
 		//this.add(this.lightGlow);
 		
 		
-		this.lightingTileHandler(this.lightGlow, this.brickTilemap, "assets/images/Ziegel_numbered.png");
+		this.lightingTileHandler(this.lightGlow, this.brickTilemap);
 		
 		
 		
@@ -112,8 +117,9 @@ class PlayState extends FlxState
 		
 		
 		this.couchSprite = new FlxSprite(250, 30);
-		this.couchSprite.pixels = FlxAssets.getBitmapData("assets/images/gameObject_armchairB.png");
-		this.add(this.couchSprite);
+		//this.couchSprite.pixels = FlxAssets.getBitmapData("assets/images/gameObject_armchairB.png");
+		this.couchSprite.loadGraphic("assets/images/gameObject_armchairB.png", false, 59, 45, true);
+		this.objectGroup.add(this.couchSprite);
 		
 		
 		
@@ -130,11 +136,11 @@ class PlayState extends FlxState
 		
 		
 		this.brickSpriteText = new FlxText(270, 200, 0, "FlxSprite");
-		this.add(brickSpriteText);
+		this.objectGroup.add(brickSpriteText);
 		
 		this.couchSprite2 = new FlxSprite(250, 250);
 		this.couchSprite2.loadGraphic("assets/images/gameObject_armchairB.png", false, 59, 45, true);
-		this.add(this.couchSprite2);
+		this.objectGroup.add(this.couchSprite2);
 		
 		this.lightGlow2 = new FlxSprite(240, 24);
 		this.lightGlow2.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
@@ -142,7 +148,11 @@ class PlayState extends FlxState
 		
 
 		
-		this.lightingHandler(this.lightGlow2, this.couchSprite, "assets/images/gameObject_armchairB.png");
+		this.lightingSpriteHandler(this.lightGlow2, this.couchSprite);
+		this.lightGlow2.x += 30;
+		
+		this.lightingSpriteHandler(this.lightGlow2, this.couchSprite);
+		
 		
 		
 		
@@ -154,18 +164,34 @@ class PlayState extends FlxState
 		
 		this.lightGlow3 = new FlxSprite(450, 24);
 		this.lightGlow3.loadGraphic("assets/images/glow-light.png", false, 64, 64, true);
-		this.add(this.lightGlow3);
+		this.objectGroup.add(this.lightGlow3);
 		
 		
 		this.girlSprite = new FlxSprite(450, 20);
-		girlSprite.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, false);
+		girlSprite.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, true);
 		//this.girl.pixels = this.bitmapColorTransform(girl.pixels, testColorTransform);
 		girlSprite.animation.add("running", [0, 1, 2, 3, 4, 5, 6, 7], 16);
-		girlSprite.animation.callback = function(n:String, i:Int, j:Int):Void
+		girlSprite.animation.callback = function(n:String, frameNumber:Int, frameIndex:Int):Void
 		{
-			trace("frame changed");
+			trace("FrameNumber: " + frameIndex);
+			//var frame:FlxFrame = new FlxFrame(FlxGraphic.fromBitmapData(new BitmapData(48, 61)), 0, true, false);
+			//var frame:FlxFrame = new FlxFrame(FlxGraphic.fromBitmapData(girlSprite.frames.getByIndex(frameIndex).parent.bitmap));
+			var frame:FlxFrame = girlSprite.frames.getByIndex(frameIndex);
+			frame.frame = new FlxRect(0, 0, 48, 61);
+			frame.sourceSize.set(frame.frame.width, frame.frame.height);
+			frame.offset.set(0, 0);
+			girlSprite.frame = frame;
+			
+			
+			
+			
+			//trace("frame changed");
 			//this.lightingAnimationHandler(this.lightGlow3, this.girlSprite, this.girlSprite.framePixels);
-			girlSprite.framePixels = new BitmapData(48, 61, true, (Math.floor(Math.random() * (4294967295 - 0 + 1)) + 0));
+			//girlSprite.framePixels = new BitmapData(48, 61, true, (Math.floor(Math.random() * (4294967295 - 0 + 1)) + 0));
+			
+			//girlSprite.frames.parent.bitmap.fillRect(girlSprite.frames.parent.bitmap.rect, 0xFFFF0000);
+			//girlSprite.frames.frames[frameNumber].parent.bitmap = new BitmapData(48, 61);
+			
 			
 			//neither of those work:
 			//girlSprite.frame.parent.bitmap = new BitmapData(48, 61);
@@ -175,13 +201,13 @@ class PlayState extends FlxState
 		}
 		
 		
-		this.add(girlSprite);
+		this.objectGroup.add(girlSprite);
 		this.girlSprite.animation.play("running");
-		this.girlSprite.color = 0x00FFFF;
-		this.girlSprite.drawFrame(false);
+		//this.girlSprite.color = 0x00FFFF;
+		this.girlSprite.drawFrame(true);
 		
 		this.girlSpriteText = new FlxText(470, 200, 0, "Animated FlxSprite");
-		this.add(girlSpriteText);
+		this.objectGroup.add(girlSpriteText);
 		
 		//this.girl.framePixels.colorTransform(this.girl.getHitbox().copyToFlash(), testColorTransform);
 		//trace (this.girl.framePixels.colorTransform);
@@ -190,9 +216,9 @@ class PlayState extends FlxState
 
 		
 		this.girlSprite2 = new FlxSprite(450, 250);
-		girlSprite2.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, false);
+		girlSprite2.loadGraphic("assets/images/arron jes cycle.png", true, 48, 61, true);
 		girlSprite2.animation.add("running", [0, 1, 2, 3, 4, 5, 6, 7], 16);
-		this.add(girlSprite2);
+		this.objectGroup.add(girlSprite2);
 		girlSprite2.animation.play("running");
 		
 		//this.lightingAnimationHandler(this.lightGlow3, this.girlSprite, this.girlSprite.framePixels);
@@ -217,7 +243,7 @@ class PlayState extends FlxState
 	 * The original, uncolored pixels of the target object are copied at the position where the light cone hits it. 
 	 * Here, those pixels are copied into the bitmapdata of a newly created FlxSprite.
 	 */
-	public function lightingTileHandler(Light:FlxSprite, Target:FlxTilemap, TargetSource:String):Void
+	public function lightingTileHandler(Light:FlxSprite, Target:FlxTilemap):Void
 	{
 		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
 		
@@ -238,7 +264,7 @@ class PlayState extends FlxState
 			var maskRectBitmap = new BitmapData(Std.int(intersectionRect.width), Std.int(intersectionRect.height));
 			maskRectBitmap.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), new Point());
 			
-			overlaySprite = lightMask(overlaySprite, TargetSource, maskRectBitmap, sourceRectLocal, targetPointLocal);
+			lightMask(overlaySprite, Target.graphic.assetsKey, maskRectBitmap, sourceRectLocal, targetPointLocal);
 			
 		}
 		
@@ -258,14 +284,14 @@ class PlayState extends FlxState
 	 * 
 	 * The original, uncolored pixels of the target object are copied at the position where the light cone hits it.
 	 */
-	public function lightingHandler(Light:FlxSprite, Target:FlxSprite, TargetSource:String):Void
+	public function lightingSpriteHandler(Light:FlxSprite, Target:FlxSprite):Void
 	{
 		//Creates the intersection Rectangle between the Light and the Target (if existent) and transforms it from FlxRect to flash.geom.Rectangle
 		var intersectionRect:Rectangle = (Light.getHitbox().intersection(Target.getHitbox())).copyToFlash();		
 		
 		if ((intersectionRect != null) && (intersectionRect.width > 0) && (intersectionRect.height > 0))
 		{
-			trace("intersect not null");
+			//trace("intersect not null");
 			
 			var sourceRectLocal = new Rectangle(intersectionRect.x - Target.x, intersectionRect.y - Target.y, intersectionRect.width, intersectionRect.height);
 			var targetPointLocal = new Point(intersectionRect.x - Target.x, intersectionRect.y - Target.y);
@@ -273,10 +299,7 @@ class PlayState extends FlxState
 			var maskRectBitmap = new BitmapData(Std.int(intersectionRect.width), Std.int(intersectionRect.height));
 			maskRectBitmap.copyPixels(Light.pixels, new Rectangle(intersectionRect.x - Light.x, intersectionRect.y - Light.y, intersectionRect.width, intersectionRect.height), new Point());
 			
-			//I have manually inserted the link to the asset file here.
-			//I could operate on a childclass of FlxSprite which has this link as a static class attribute
-			//But ir would be more elegant if I could somehow access the original, unmodified bitmapdata, which must be stored somewhere - just haven't found it yet.
-			Target = lightMask(Target, TargetSource, maskRectBitmap, sourceRectLocal, targetPointLocal);
+			lightMask(Target, Target.graphic.assetsKey, maskRectBitmap, sourceRectLocal, targetPointLocal);
 		}
 	}
 	
@@ -423,19 +446,6 @@ class PlayState extends FlxState
 	}
 	
 
-	/**
-	 * Helper funtion for getting a flash.geom.Rectangle, representing the intersection between light and target hit by the light.
-	 * @param	Light
-	 * @param	Target
-	 * @return
-	 */
-	public function overlapCheck(Light:FlxObject, Target:FlxObject):Rectangle
-	{
-		var intersectionRect:FlxRect = Light.getHitbox().intersection(Target.getHitbox());
-		return intersectionRect.copyToFlash();
-	}
-	
-	
 	
 	
 	
@@ -443,14 +453,14 @@ class PlayState extends FlxState
 	 * A modified version of FlxSpriteUtil.alphaMask.
 	 * Used to negate a colorTransformation on a Sprite or Tilemap when hit by a light source.
 	 * 
-	 * @param	output		The FlxSprite you wish the resulting image to be placed in (the darkened sprite you want the light cone to shine on)
+	 * @param	target		The FlxSprite you wish the resulting image to be placed in (the darkened sprite you want the light cone to shine on)
 	 * @param	source		The source image. The uncolored, unmodified graphic of the output, before it was tinted.
 	 * @param	mask		The mask to apply. This is the bitmap of that part of the light cone graphic that intersects with the target.
 	 * @param	rectangle	The area on the source bitmap from which the unmodified pixels are to be copied from. In local coordinates, as it operates on the bitmap.
 	 * @param	targetPoint	The target point where that rectangle is to be located on the target bitmap.
 	 * @return 	The FlxSprite for chaining
 	 */
-	public static function lightMask(target:FlxSprite, source:Dynamic, mask:Dynamic, rectangle:Rectangle, targetPoint:Point):FlxSprite
+	public static function lightMask(target:FlxSprite, source:Dynamic, mask:Dynamic, rectangle:Rectangle, targetPoint:Point):Void
 	{
 		var data:BitmapData = null;
 		if (Std.is(source, String))
@@ -490,21 +500,16 @@ class PlayState extends FlxState
 			return null;
 		}
 		
-		trace("rectangle top left: " + rectangle.x + "/" + rectangle.y);
-		trace("rectangle bottom right: " + rectangle.bottomRight.x + "/" + rectangle.bottomRight.y);
-		trace("target point: " + targetPoint.x + "/" + targetPoint.y);
+		//trace("rectangle top left: " + rectangle.x + "/" + rectangle.y);
+		//trace("rectangle bottom right: " + rectangle.bottomRight.x + "/" + rectangle.bottomRight.y);
+		//trace("target point: " + targetPoint.x + "/" + targetPoint.y);
 		
 		target.pixels.copyPixels(data, rectangle, targetPoint, maskData, null, true);
-		return target;
+		//return target.framePixels;
 	}
 	
 	
-	public function animationCallback(animationName:String, currentFrame:Int, currentFrameIndex:Int):Void
-	{
-		trace("framechange");
-	}
-	
-	
+		
 	
 	public function get2DArrayOfTilemapOverlap(Tilemap:FlxTilemap, TileWidth:Int, TileHeight:Int, OverlapRect: Rectangle):Array<Array<Int>>
 	{
@@ -630,9 +635,42 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		//this.lightingAnimationHandler(this.lightGlow, this.girlSprite, this.girlSprite.framePixels);
 		//this.girlSprite.drawFrame(true);
-	}	
+		
+		
+		/*
+		this.lightGlow.x = FlxG.mouse.screenX - Std.int(this.lightGlow.width / 2);
+		this.lightGlow.y = FlxG.mouse.screenY - Std.int(this.lightGlow.height / 2);
+		
+		
+		
+		for (i in 0...this.objectGroup.members.length)
+		{
+			var _target:FlxObject = this.objectGroup.members[i];
+			
+			if (_target.overlaps(this.lightGlow))
+			{
+				
+				if (_target == this.couchSprite)
+				{
+					trace("okay, it's the couch.");
+				}
+				
+				if (Type.getClass(_target) == FlxTilemap)
+				{
+					this.lightingTileHandler(this.lightGlow, cast _target);
+					
+				}
+				else if (Type.getClass(_target) == FlxSprite)
+				{
+					//trace ("it'S a sprite! aw my god!");
+					this.lightingSpriteHandler(this.lightGlow, cast _target);
+				}
+			}
+		}
+		*/
+		
+	}
 	
 
 
-	
 }
