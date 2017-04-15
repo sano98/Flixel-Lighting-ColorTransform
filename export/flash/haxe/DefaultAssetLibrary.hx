@@ -59,17 +59,39 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		#end
@@ -78,30 +100,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/data/data-goes-here.txt", __ASSET__assets_data_data_goes_here_txt);
 		type.set ("assets/data/data-goes-here.txt", AssetType.TEXT);
-		className.set ("assets/images/box-shadow.png", __ASSET__assets_images_box_shadow_png);
-		type.set ("assets/images/box-shadow.png", AssetType.IMAGE);
-		className.set ("assets/images/girderBase.png", __ASSET__assets_images_girderbase_png);
-		type.set ("assets/images/girderBase.png", AssetType.IMAGE);
-		className.set ("assets/images/glow-light.png", __ASSET__assets_images_glow_light_png);
-		type.set ("assets/images/glow-light.png", AssetType.IMAGE);
-		className.set ("assets/images/greenbox.png", __ASSET__assets_images_greenbox_png);
-		type.set ("assets/images/greenbox.png", AssetType.IMAGE);
-		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
-		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
-		className.set ("assets/images/steelGirder.png", __ASSET__assets_images_steelgirder_png);
-		type.set ("assets/images/steelGirder.png", AssetType.IMAGE);
-		className.set ("assets/images/steelGirder2.png", __ASSET__assets_images_steelgirder2_png);
-		type.set ("assets/images/steelGirder2.png", AssetType.IMAGE);
-		className.set ("assets/images/tile_brickwall2.png", __ASSET__assets_images_tile_brickwall2_png);
-		type.set ("assets/images/tile_brickwall2.png", AssetType.IMAGE);
-		className.set ("assets/images/tile_concretewall.png", __ASSET__assets_images_tile_concretewall_png);
-		type.set ("assets/images/tile_concretewall.png", AssetType.IMAGE);
-		className.set ("assets/images/tile_concretewall_test.png", __ASSET__assets_images_tile_concretewall_test_png);
-		type.set ("assets/images/tile_concretewall_test.png", AssetType.IMAGE);
-		className.set ("assets/images/tile_floor.png", __ASSET__assets_images_tile_floor_png);
-		type.set ("assets/images/tile_floor.png", AssetType.IMAGE);
-		className.set ("assets/images/ZiegelUnregV1.png", __ASSET__assets_images_ziegelunregv1_png);
-		type.set ("assets/images/ZiegelUnregV1.png", AssetType.IMAGE);
+		className.set ("assets/images/gameObject_armchairB.png", __ASSET__assets_images_gameobject_armchairb_png);
+		type.set ("assets/images/gameObject_armchairB.png", AssetType.IMAGE);
+		className.set ("assets/images/objectIcon_Screw_48x48_white.png", __ASSET__assets_images_objecticon_screw_48x48_white_png);
+		type.set ("assets/images/objectIcon_Screw_48x48_white.png", AssetType.IMAGE);
+		className.set ("assets/images/recipeButtonFrameWhite.png", __ASSET__assets_images_recipebuttonframewhite_png);
+		type.set ("assets/images/recipeButtonFrameWhite.png", AssetType.IMAGE);
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
 		type.set ("assets/music/music-goes-here.txt", AssetType.TEXT);
 		className.set ("assets/sounds/sounds-go-here.txt", __ASSET__assets_sounds_sounds_go_here_txt);
@@ -116,6 +120,68 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("flixel/fonts/monsterrat.ttf", AssetType.FONT);
 		className.set ("flixel/images/ui/button.png", __ASSET__flixel_images_ui_button_png);
 		type.set ("flixel/images/ui/button.png", AssetType.IMAGE);
+		className.set ("flixel/images/logo/default.png", __ASSET__flixel_images_logo_default_png);
+		type.set ("flixel/images/logo/default.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/box.png", __ASSET__flixel_flixel_ui_img_box_png);
+		type.set ("flixel/flixel-ui/img/box.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/button.png", __ASSET__flixel_flixel_ui_img_button_png);
+		type.set ("flixel/flixel-ui/img/button.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/button_arrow_down.png", __ASSET__flixel_flixel_ui_img_button_arrow_down_png);
+		type.set ("flixel/flixel-ui/img/button_arrow_down.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/button_arrow_left.png", __ASSET__flixel_flixel_ui_img_button_arrow_left_png);
+		type.set ("flixel/flixel-ui/img/button_arrow_left.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/button_arrow_right.png", __ASSET__flixel_flixel_ui_img_button_arrow_right_png);
+		type.set ("flixel/flixel-ui/img/button_arrow_right.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/button_arrow_up.png", __ASSET__flixel_flixel_ui_img_button_arrow_up_png);
+		type.set ("flixel/flixel-ui/img/button_arrow_up.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/button_thin.png", __ASSET__flixel_flixel_ui_img_button_thin_png);
+		type.set ("flixel/flixel-ui/img/button_thin.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/button_toggle.png", __ASSET__flixel_flixel_ui_img_button_toggle_png);
+		type.set ("flixel/flixel-ui/img/button_toggle.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/check_box.png", __ASSET__flixel_flixel_ui_img_check_box_png);
+		type.set ("flixel/flixel-ui/img/check_box.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/check_mark.png", __ASSET__flixel_flixel_ui_img_check_mark_png);
+		type.set ("flixel/flixel-ui/img/check_mark.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/chrome.png", __ASSET__flixel_flixel_ui_img_chrome_png);
+		type.set ("flixel/flixel-ui/img/chrome.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/chrome_flat.png", __ASSET__flixel_flixel_ui_img_chrome_flat_png);
+		type.set ("flixel/flixel-ui/img/chrome_flat.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/chrome_inset.png", __ASSET__flixel_flixel_ui_img_chrome_inset_png);
+		type.set ("flixel/flixel-ui/img/chrome_inset.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/chrome_light.png", __ASSET__flixel_flixel_ui_img_chrome_light_png);
+		type.set ("flixel/flixel-ui/img/chrome_light.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/dropdown_mark.png", __ASSET__flixel_flixel_ui_img_dropdown_mark_png);
+		type.set ("flixel/flixel-ui/img/dropdown_mark.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/finger_big.png", __ASSET__flixel_flixel_ui_img_finger_big_png);
+		type.set ("flixel/flixel-ui/img/finger_big.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/finger_small.png", __ASSET__flixel_flixel_ui_img_finger_small_png);
+		type.set ("flixel/flixel-ui/img/finger_small.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/hilight.png", __ASSET__flixel_flixel_ui_img_hilight_png);
+		type.set ("flixel/flixel-ui/img/hilight.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/invis.png", __ASSET__flixel_flixel_ui_img_invis_png);
+		type.set ("flixel/flixel-ui/img/invis.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/minus_mark.png", __ASSET__flixel_flixel_ui_img_minus_mark_png);
+		type.set ("flixel/flixel-ui/img/minus_mark.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/plus_mark.png", __ASSET__flixel_flixel_ui_img_plus_mark_png);
+		type.set ("flixel/flixel-ui/img/plus_mark.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/radio.png", __ASSET__flixel_flixel_ui_img_radio_png);
+		type.set ("flixel/flixel-ui/img/radio.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/radio_dot.png", __ASSET__flixel_flixel_ui_img_radio_dot_png);
+		type.set ("flixel/flixel-ui/img/radio_dot.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/swatch.png", __ASSET__flixel_flixel_ui_img_swatch_png);
+		type.set ("flixel/flixel-ui/img/swatch.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/tab.png", __ASSET__flixel_flixel_ui_img_tab_png);
+		type.set ("flixel/flixel-ui/img/tab.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/tab_back.png", __ASSET__flixel_flixel_ui_img_tab_back_png);
+		type.set ("flixel/flixel-ui/img/tab_back.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/img/tooltip_arrow.png", __ASSET__flixel_flixel_ui_img_tooltip_arrow_png);
+		type.set ("flixel/flixel-ui/img/tooltip_arrow.png", AssetType.IMAGE);
+		className.set ("flixel/flixel-ui/xml/defaults.xml", __ASSET__flixel_flixel_ui_xml_defaults_xml);
+		type.set ("flixel/flixel-ui/xml/defaults.xml", AssetType.TEXT);
+		className.set ("flixel/flixel-ui/xml/default_loading_screen.xml", __ASSET__flixel_flixel_ui_xml_default_loading_screen_xml);
+		type.set ("flixel/flixel-ui/xml/default_loading_screen.xml", AssetType.TEXT);
+		className.set ("flixel/flixel-ui/xml/default_popup.xml", __ASSET__flixel_flixel_ui_xml_default_popup_xml);
+		type.set ("flixel/flixel-ui/xml/default_popup.xml", AssetType.TEXT);
 		
 		
 		#elseif html5
@@ -125,51 +191,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.TEXT);
-		id = "assets/images/box-shadow.png";
+		id = "assets/images/gameObject_armchairB.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/girderBase.png";
+		id = "assets/images/objectIcon_Screw_48x48_white.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/glow-light.png";
-		path.set (id, id);
-		
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/greenbox.png";
-		path.set (id, id);
-		
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/images-go-here.txt";
-		path.set (id, id);
-		
-		type.set (id, AssetType.TEXT);
-		id = "assets/images/steelGirder.png";
-		path.set (id, id);
-		
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/steelGirder2.png";
-		path.set (id, id);
-		
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/tile_brickwall2.png";
-		path.set (id, id);
-		
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/tile_concretewall.png";
-		path.set (id, id);
-		
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/tile_concretewall_test.png";
-		path.set (id, id);
-		
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/tile_floor.png";
-		path.set (id, id);
-		
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/ZiegelUnregV1.png";
+		id = "assets/images/recipeButtonFrameWhite.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -201,6 +231,130 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
+		id = "flixel/images/logo/default.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/box.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/button.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/button_arrow_down.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/button_arrow_left.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/button_arrow_right.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/button_arrow_up.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/button_thin.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/button_toggle.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/check_box.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/check_mark.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/chrome.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/chrome_flat.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/chrome_inset.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/chrome_light.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/dropdown_mark.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/finger_big.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/finger_small.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/hilight.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/invis.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/minus_mark.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/plus_mark.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/radio.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/radio_dot.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/swatch.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/tab.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/tab_back.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/img/tooltip_arrow.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "flixel/flixel-ui/xml/defaults.xml";
+		path.set (id, id);
+		
+		type.set (id, AssetType.TEXT);
+		id = "flixel/flixel-ui/xml/default_loading_screen.xml";
+		path.set (id, id);
+		
+		type.set (id, AssetType.TEXT);
+		id = "flixel/flixel-ui/xml/default_popup.xml";
+		path.set (id, id);
+		
+		type.set (id, AssetType.TEXT);
 		
 		
 		var assetsPrefix = null;
@@ -222,41 +376,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		className.set ("assets/data/data-goes-here.txt", __ASSET__assets_data_data_goes_here_txt);
 		type.set ("assets/data/data-goes-here.txt", AssetType.TEXT);
 		
-		className.set ("assets/images/box-shadow.png", __ASSET__assets_images_box_shadow_png);
-		type.set ("assets/images/box-shadow.png", AssetType.IMAGE);
+		className.set ("assets/images/gameObject_armchairB.png", __ASSET__assets_images_gameobject_armchairb_png);
+		type.set ("assets/images/gameObject_armchairB.png", AssetType.IMAGE);
 		
-		className.set ("assets/images/girderBase.png", __ASSET__assets_images_girderbase_png);
-		type.set ("assets/images/girderBase.png", AssetType.IMAGE);
+		className.set ("assets/images/objectIcon_Screw_48x48_white.png", __ASSET__assets_images_objecticon_screw_48x48_white_png);
+		type.set ("assets/images/objectIcon_Screw_48x48_white.png", AssetType.IMAGE);
 		
-		className.set ("assets/images/glow-light.png", __ASSET__assets_images_glow_light_png);
-		type.set ("assets/images/glow-light.png", AssetType.IMAGE);
-		
-		className.set ("assets/images/greenbox.png", __ASSET__assets_images_greenbox_png);
-		type.set ("assets/images/greenbox.png", AssetType.IMAGE);
-		
-		className.set ("assets/images/images-go-here.txt", __ASSET__assets_images_images_go_here_txt);
-		type.set ("assets/images/images-go-here.txt", AssetType.TEXT);
-		
-		className.set ("assets/images/steelGirder.png", __ASSET__assets_images_steelgirder_png);
-		type.set ("assets/images/steelGirder.png", AssetType.IMAGE);
-		
-		className.set ("assets/images/steelGirder2.png", __ASSET__assets_images_steelgirder2_png);
-		type.set ("assets/images/steelGirder2.png", AssetType.IMAGE);
-		
-		className.set ("assets/images/tile_brickwall2.png", __ASSET__assets_images_tile_brickwall2_png);
-		type.set ("assets/images/tile_brickwall2.png", AssetType.IMAGE);
-		
-		className.set ("assets/images/tile_concretewall.png", __ASSET__assets_images_tile_concretewall_png);
-		type.set ("assets/images/tile_concretewall.png", AssetType.IMAGE);
-		
-		className.set ("assets/images/tile_concretewall_test.png", __ASSET__assets_images_tile_concretewall_test_png);
-		type.set ("assets/images/tile_concretewall_test.png", AssetType.IMAGE);
-		
-		className.set ("assets/images/tile_floor.png", __ASSET__assets_images_tile_floor_png);
-		type.set ("assets/images/tile_floor.png", AssetType.IMAGE);
-		
-		className.set ("assets/images/ZiegelUnregV1.png", __ASSET__assets_images_ziegelunregv1_png);
-		type.set ("assets/images/ZiegelUnregV1.png", AssetType.IMAGE);
+		className.set ("assets/images/recipeButtonFrameWhite.png", __ASSET__assets_images_recipebuttonframewhite_png);
+		type.set ("assets/images/recipeButtonFrameWhite.png", AssetType.IMAGE);
 		
 		className.set ("assets/music/music-goes-here.txt", __ASSET__assets_music_music_goes_here_txt);
 		type.set ("assets/music/music-goes-here.txt", AssetType.TEXT);
@@ -278,6 +405,99 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("flixel/images/ui/button.png", __ASSET__flixel_images_ui_button_png);
 		type.set ("flixel/images/ui/button.png", AssetType.IMAGE);
+		
+		className.set ("flixel/images/logo/default.png", __ASSET__flixel_images_logo_default_png);
+		type.set ("flixel/images/logo/default.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/box.png", __ASSET__flixel_flixel_ui_img_box_png);
+		type.set ("flixel/flixel-ui/img/box.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/button.png", __ASSET__flixel_flixel_ui_img_button_png);
+		type.set ("flixel/flixel-ui/img/button.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/button_arrow_down.png", __ASSET__flixel_flixel_ui_img_button_arrow_down_png);
+		type.set ("flixel/flixel-ui/img/button_arrow_down.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/button_arrow_left.png", __ASSET__flixel_flixel_ui_img_button_arrow_left_png);
+		type.set ("flixel/flixel-ui/img/button_arrow_left.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/button_arrow_right.png", __ASSET__flixel_flixel_ui_img_button_arrow_right_png);
+		type.set ("flixel/flixel-ui/img/button_arrow_right.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/button_arrow_up.png", __ASSET__flixel_flixel_ui_img_button_arrow_up_png);
+		type.set ("flixel/flixel-ui/img/button_arrow_up.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/button_thin.png", __ASSET__flixel_flixel_ui_img_button_thin_png);
+		type.set ("flixel/flixel-ui/img/button_thin.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/button_toggle.png", __ASSET__flixel_flixel_ui_img_button_toggle_png);
+		type.set ("flixel/flixel-ui/img/button_toggle.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/check_box.png", __ASSET__flixel_flixel_ui_img_check_box_png);
+		type.set ("flixel/flixel-ui/img/check_box.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/check_mark.png", __ASSET__flixel_flixel_ui_img_check_mark_png);
+		type.set ("flixel/flixel-ui/img/check_mark.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/chrome.png", __ASSET__flixel_flixel_ui_img_chrome_png);
+		type.set ("flixel/flixel-ui/img/chrome.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/chrome_flat.png", __ASSET__flixel_flixel_ui_img_chrome_flat_png);
+		type.set ("flixel/flixel-ui/img/chrome_flat.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/chrome_inset.png", __ASSET__flixel_flixel_ui_img_chrome_inset_png);
+		type.set ("flixel/flixel-ui/img/chrome_inset.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/chrome_light.png", __ASSET__flixel_flixel_ui_img_chrome_light_png);
+		type.set ("flixel/flixel-ui/img/chrome_light.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/dropdown_mark.png", __ASSET__flixel_flixel_ui_img_dropdown_mark_png);
+		type.set ("flixel/flixel-ui/img/dropdown_mark.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/finger_big.png", __ASSET__flixel_flixel_ui_img_finger_big_png);
+		type.set ("flixel/flixel-ui/img/finger_big.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/finger_small.png", __ASSET__flixel_flixel_ui_img_finger_small_png);
+		type.set ("flixel/flixel-ui/img/finger_small.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/hilight.png", __ASSET__flixel_flixel_ui_img_hilight_png);
+		type.set ("flixel/flixel-ui/img/hilight.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/invis.png", __ASSET__flixel_flixel_ui_img_invis_png);
+		type.set ("flixel/flixel-ui/img/invis.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/minus_mark.png", __ASSET__flixel_flixel_ui_img_minus_mark_png);
+		type.set ("flixel/flixel-ui/img/minus_mark.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/plus_mark.png", __ASSET__flixel_flixel_ui_img_plus_mark_png);
+		type.set ("flixel/flixel-ui/img/plus_mark.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/radio.png", __ASSET__flixel_flixel_ui_img_radio_png);
+		type.set ("flixel/flixel-ui/img/radio.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/radio_dot.png", __ASSET__flixel_flixel_ui_img_radio_dot_png);
+		type.set ("flixel/flixel-ui/img/radio_dot.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/swatch.png", __ASSET__flixel_flixel_ui_img_swatch_png);
+		type.set ("flixel/flixel-ui/img/swatch.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/tab.png", __ASSET__flixel_flixel_ui_img_tab_png);
+		type.set ("flixel/flixel-ui/img/tab.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/tab_back.png", __ASSET__flixel_flixel_ui_img_tab_back_png);
+		type.set ("flixel/flixel-ui/img/tab_back.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/img/tooltip_arrow.png", __ASSET__flixel_flixel_ui_img_tooltip_arrow_png);
+		type.set ("flixel/flixel-ui/img/tooltip_arrow.png", AssetType.IMAGE);
+		
+		className.set ("flixel/flixel-ui/xml/defaults.xml", __ASSET__flixel_flixel_ui_xml_defaults_xml);
+		type.set ("flixel/flixel-ui/xml/defaults.xml", AssetType.TEXT);
+		
+		className.set ("flixel/flixel-ui/xml/default_loading_screen.xml", __ASSET__flixel_flixel_ui_xml_default_loading_screen_xml);
+		type.set ("flixel/flixel-ui/xml/default_loading_screen.xml", AssetType.TEXT);
+		
+		className.set ("flixel/flixel-ui/xml/default_popup.xml", __ASSET__flixel_flixel_ui_xml_default_popup_xml);
+		type.set ("flixel/flixel-ui/xml/default_popup.xml", AssetType.TEXT);
 		
 		
 		if (useManifest) {
@@ -686,9 +906,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		if (path.exists (id)) {
 			
 			var loader = new URLLoader ();
+			loader.dataFormat = flash.net.URLLoaderDataFormat.BINARY;
 			loader.addEventListener (Event.COMPLETE, function (event:Event) {
 				
-				var bytes = Bytes.ofString (event.currentTarget.data);
+				var bytes = Bytes.ofData (event.currentTarget.data);
 				promise.complete (bytes);
 				
 			});
@@ -923,18 +1144,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if flash
 
 @:keep @:bind #if display private #end class __ASSET__assets_data_data_goes_here_txt extends flash.utils.ByteArray { }
-@:keep @:bind #if display private #end class __ASSET__assets_images_box_shadow_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_girderbase_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_glow_light_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_greenbox_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_images_go_here_txt extends flash.utils.ByteArray { }
-@:keep @:bind #if display private #end class __ASSET__assets_images_steelgirder_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_steelgirder2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_tile_brickwall2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_tile_concretewall_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_tile_concretewall_test_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_tile_floor_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind #if display private #end class __ASSET__assets_images_ziegelunregv1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_gameobject_armchairb_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_objecticon_screw_48x48_white_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__assets_images_recipebuttonframewhite_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__assets_music_music_goes_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__assets_sounds_sounds_go_here_txt extends flash.utils.ByteArray { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_beep_mp3 extends flash.media.Sound { }
@@ -942,18 +1154,40 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:keep @:bind #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends flash.text.Font { }
 @:keep @:bind #if display private #end class __ASSET__flixel_fonts_monsterrat_ttf extends flash.text.Font { }
 @:keep @:bind #if display private #end class __ASSET__flixel_images_ui_button_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_images_logo_default_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_box_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_button_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_button_arrow_down_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_button_arrow_left_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_button_arrow_right_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_button_arrow_up_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_button_thin_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_button_toggle_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_check_box_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_check_mark_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_chrome_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_chrome_flat_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_chrome_inset_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_chrome_light_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_dropdown_mark_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_finger_big_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_finger_small_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_hilight_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_invis_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_minus_mark_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_plus_mark_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_radio_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_radio_dot_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_swatch_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_tab_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_tab_back_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_img_tooltip_arrow_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_xml_defaults_xml extends flash.utils.ByteArray { }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_xml_default_loading_screen_xml extends flash.utils.ByteArray { }
+@:keep @:bind #if display private #end class __ASSET__flixel_flixel_ui_xml_default_popup_xml extends flash.utils.ByteArray { }
 
 
 #elseif html5
-
-
-
-
-
-
-
-
-
 
 
 
@@ -968,6 +1202,37 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #else
 
 
@@ -976,18 +1241,9 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 @:file("assets/data/data-goes-here.txt") #if display private #end class __ASSET__assets_data_data_goes_here_txt extends lime.utils.Bytes {}
-@:image("assets/images/box-shadow.png") #if display private #end class __ASSET__assets_images_box_shadow_png extends lime.graphics.Image {}
-@:image("assets/images/girderBase.png") #if display private #end class __ASSET__assets_images_girderbase_png extends lime.graphics.Image {}
-@:image("assets/images/glow-light.png") #if display private #end class __ASSET__assets_images_glow_light_png extends lime.graphics.Image {}
-@:image("assets/images/greenbox.png") #if display private #end class __ASSET__assets_images_greenbox_png extends lime.graphics.Image {}
-@:file("assets/images/images-go-here.txt") #if display private #end class __ASSET__assets_images_images_go_here_txt extends lime.utils.Bytes {}
-@:image("assets/images/steelGirder.png") #if display private #end class __ASSET__assets_images_steelgirder_png extends lime.graphics.Image {}
-@:image("assets/images/steelGirder2.png") #if display private #end class __ASSET__assets_images_steelgirder2_png extends lime.graphics.Image {}
-@:image("assets/images/tile_brickwall2.png") #if display private #end class __ASSET__assets_images_tile_brickwall2_png extends lime.graphics.Image {}
-@:image("assets/images/tile_concretewall.png") #if display private #end class __ASSET__assets_images_tile_concretewall_png extends lime.graphics.Image {}
-@:image("assets/images/tile_concretewall_test.png") #if display private #end class __ASSET__assets_images_tile_concretewall_test_png extends lime.graphics.Image {}
-@:image("assets/images/tile_floor.png") #if display private #end class __ASSET__assets_images_tile_floor_png extends lime.graphics.Image {}
-@:image("assets/images/ZiegelUnregV1.png") #if display private #end class __ASSET__assets_images_ziegelunregv1_png extends lime.graphics.Image {}
+@:image("assets/images/gameObject_armchairB.png") #if display private #end class __ASSET__assets_images_gameobject_armchairb_png extends lime.graphics.Image {}
+@:image("assets/images/objectIcon_Screw_48x48_white.png") #if display private #end class __ASSET__assets_images_objecticon_screw_48x48_white_png extends lime.graphics.Image {}
+@:image("assets/images/recipeButtonFrameWhite.png") #if display private #end class __ASSET__assets_images_recipebuttonframewhite_png extends lime.graphics.Image {}
 @:file("assets/music/music-goes-here.txt") #if display private #end class __ASSET__assets_music_music_goes_here_txt extends lime.utils.Bytes {}
 @:file("assets/sounds/sounds-go-here.txt") #if display private #end class __ASSET__assets_sounds_sounds_go_here_txt extends lime.utils.Bytes {}
 @:file("C:/HaxeToolkit/haxe/lib/flixel/git/assets/sounds/beep.mp3") #if display private #end class __ASSET__flixel_sounds_beep_mp3 extends lime.utils.Bytes {}
@@ -995,6 +1251,37 @@ class DefaultAssetLibrary extends AssetLibrary {
 @:font("C:/HaxeToolkit/haxe/lib/flixel/git/assets/fonts/nokiafc22.ttf") #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends lime.text.Font {}
 @:font("C:/HaxeToolkit/haxe/lib/flixel/git/assets/fonts/monsterrat.ttf") #if display private #end class __ASSET__flixel_fonts_monsterrat_ttf extends lime.text.Font {}
 @:image("C:/HaxeToolkit/haxe/lib/flixel/git/assets/images/ui/button.png") #if display private #end class __ASSET__flixel_images_ui_button_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel/git/assets/images/logo/default.png") #if display private #end class __ASSET__flixel_images_logo_default_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/box.png") #if display private #end class __ASSET__flixel_flixel_ui_img_box_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/button.png") #if display private #end class __ASSET__flixel_flixel_ui_img_button_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/button_arrow_down.png") #if display private #end class __ASSET__flixel_flixel_ui_img_button_arrow_down_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/button_arrow_left.png") #if display private #end class __ASSET__flixel_flixel_ui_img_button_arrow_left_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/button_arrow_right.png") #if display private #end class __ASSET__flixel_flixel_ui_img_button_arrow_right_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/button_arrow_up.png") #if display private #end class __ASSET__flixel_flixel_ui_img_button_arrow_up_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/button_thin.png") #if display private #end class __ASSET__flixel_flixel_ui_img_button_thin_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/button_toggle.png") #if display private #end class __ASSET__flixel_flixel_ui_img_button_toggle_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/check_box.png") #if display private #end class __ASSET__flixel_flixel_ui_img_check_box_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/check_mark.png") #if display private #end class __ASSET__flixel_flixel_ui_img_check_mark_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/chrome.png") #if display private #end class __ASSET__flixel_flixel_ui_img_chrome_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/chrome_flat.png") #if display private #end class __ASSET__flixel_flixel_ui_img_chrome_flat_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/chrome_inset.png") #if display private #end class __ASSET__flixel_flixel_ui_img_chrome_inset_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/chrome_light.png") #if display private #end class __ASSET__flixel_flixel_ui_img_chrome_light_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/dropdown_mark.png") #if display private #end class __ASSET__flixel_flixel_ui_img_dropdown_mark_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/finger_big.png") #if display private #end class __ASSET__flixel_flixel_ui_img_finger_big_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/finger_small.png") #if display private #end class __ASSET__flixel_flixel_ui_img_finger_small_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/hilight.png") #if display private #end class __ASSET__flixel_flixel_ui_img_hilight_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/invis.png") #if display private #end class __ASSET__flixel_flixel_ui_img_invis_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/minus_mark.png") #if display private #end class __ASSET__flixel_flixel_ui_img_minus_mark_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/plus_mark.png") #if display private #end class __ASSET__flixel_flixel_ui_img_plus_mark_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/radio.png") #if display private #end class __ASSET__flixel_flixel_ui_img_radio_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/radio_dot.png") #if display private #end class __ASSET__flixel_flixel_ui_img_radio_dot_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/swatch.png") #if display private #end class __ASSET__flixel_flixel_ui_img_swatch_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/tab.png") #if display private #end class __ASSET__flixel_flixel_ui_img_tab_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/tab_back.png") #if display private #end class __ASSET__flixel_flixel_ui_img_tab_back_png extends lime.graphics.Image {}
+@:image("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/images/tooltip_arrow.png") #if display private #end class __ASSET__flixel_flixel_ui_img_tooltip_arrow_png extends lime.graphics.Image {}
+@:file("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/xml/defaults.xml") #if display private #end class __ASSET__flixel_flixel_ui_xml_defaults_xml extends lime.utils.Bytes {}
+@:file("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/xml/default_loading_screen.xml") #if display private #end class __ASSET__flixel_flixel_ui_xml_default_loading_screen_xml extends lime.utils.Bytes {}
+@:file("C:/HaxeToolkit/haxe/lib/flixel-ui/git/assets/xml/default_popup.xml") #if display private #end class __ASSET__flixel_flixel_ui_xml_default_popup_xml extends lime.utils.Bytes {}
 
 
 
